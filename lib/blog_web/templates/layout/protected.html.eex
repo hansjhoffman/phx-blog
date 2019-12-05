@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title><%= admin_page_title(assigns) %></title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700">
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/admin.css") %>"/>
+  </head>
+
+  <body>
+    <header>
+      <!-- <div class="">
+        <a href="/" class="">
+          <img src="<%= Routes.static_path(@conn, "/images/logo.svg") %>" class="logo" alt="logo"/>
+        </a>
+      <div> -->
+      <nav role="navigation">
+        <ul>
+          <li>
+            <%= link "Dashboard", to: Routes.admin_page_path(@conn, :index) %>
+          </li>
+          <li>
+            <%= link "Staff", to: Routes.admin_user_path(@conn, :index) %>
+          </li>
+          <li>
+            <%= link "Authors", to: Routes.cms_author_path(@conn, :index) %>
+          </li>
+          <li>
+            <%= link "Posts", to: Routes.cms_post_path(@conn, :index) %>
+          </li>
+          <li>
+            <%= link "Tags", to: Routes.cms_tag_path(@conn, :index) %>
+          </li>
+          <li><a href="/cms/settings">Settings</a></li>
+        </ul>
+        <%= form_for @conn, Routes.session_path(@conn, :delete), [method: :delete, as: :user], fn _ -> %>
+          <div class="form-group">
+            <%= submit "logout" %>
+          </div>
+        <% end %>
+      </nav>
+    </header>
+    <main role="main" class="container">
+      <p class="alert alert-info" role="alert">
+        <%= get_flash(@conn, :info) %>
+      </p>
+      <p class="alert alert-danger" role="alert">
+        <%= get_flash(@conn, :error) %>
+      </p>
+      <%= render @view_module, @view_template, assigns %>
+    </main>
+    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/admin.js") %>"></script>
+  </body>
+</html>

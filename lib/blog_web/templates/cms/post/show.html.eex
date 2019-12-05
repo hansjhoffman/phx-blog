@@ -1,0 +1,33 @@
+<h1>Show Post</h1>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @post.title %>
+  </li>
+
+  <li>
+    <strong>Content:</strong>
+    <%= @post.content %>
+  </li>
+
+  <li>
+    <strong>Views:</strong>
+    <%= @post.views %>
+  </li>
+
+  <li>
+    <strong>Slug:</strong>
+    <%= @post.slug %>
+  </li>
+
+  <li>
+    <strong>Excerpt:</strong>
+    <%= @post.excerpt %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.cms_post_path(@conn, :edit, @post) %></span>
+<span><%= link "Back", to: Routes.cms_post_path(@conn, :index) %></span>

@@ -1,0 +1,18 @@
+<h1>Show Author</h1>
+
+<ul>
+
+  <li>
+    <strong>Full name:</strong>
+    <%= @user.full_name %>
+  </li>
+
+  <li>
+    <strong>Email:</strong>
+    <%= @user.credential.email %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.cms_author_path(@conn, :edit, @user) %></span>
+<span><%= link "Back", to: Routes.cms_author_path(@conn, :index) %></span>
