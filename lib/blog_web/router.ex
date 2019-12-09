@@ -1,17 +1,20 @@
 defmodule BlogWeb.Router do
   use BlogWeb, :router
 
+  alias BlogWeb.Plugs
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    # plug Plug.Authenticate, repo: Blog.Repo
   end
 
   pipeline :protected do
     plug :put_layout, {BlogWeb.LayoutView, :protected}
+    plug Plugs.SetCurrentUser
+    # plug Plugs.EnsureAuthenticated
   end
 
   pipeline :feed do
@@ -37,7 +40,6 @@ defmodule BlogWeb.Router do
     pipe_through [:browser, :protected]
 
     resources "/posts", PostController
-    resources "/authors", AuthorController
     resources "/tags", TagController
   end
 end

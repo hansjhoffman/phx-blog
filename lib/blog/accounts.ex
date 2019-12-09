@@ -4,9 +4,9 @@ defmodule Blog.Accounts do
   """
 
   import Ecto.Query, warn: false
-  alias Blog.Repo
 
-  alias Blog.Accounts.{Credential, User}
+  alias Blog.Accounts.User
+  alias Blog.Repo
 
   @doc """
   Returns the list of users.
@@ -20,27 +20,38 @@ defmodule Blog.Accounts do
   def list_users do
     User
     |> Repo.all()
-    |> Repo.preload(:credential)
   end
 
   @doc """
   Gets a single user.
 
-  Raises `Ecto.NoResultsError` if the User does not exist.
+  Returns `nil` if the User does not exist.
 
   ## Examples
 
-      iex> get_user!(123)
+      iex> get_user(123)
       %User{}
 
-      iex> get_user!(456)
-      ** (Ecto.NoResultsError)
+      iex> get_user(456)
+      nil
 
   """
-  def get_user!(id) do
+  def get_user(id) do
     User
-    |> Repo.get!(id)
-    |> Repo.preload(:credential)
+    |> Repo.get(id)
+  end
+
+  @doc """
+  Gets a user by the given params.
+
+  ## Examples
+
+      iex> get_user_by(handle: "foobar")
+      {:ok, %User{}}
+  """
+  def get_user_by(params) do
+    User
+    |> Repo.get_by(params)
   end
 
   @doc """
@@ -57,8 +68,7 @@ defmodule Blog.Accounts do
   """
   def create_user(attrs \\ %{}) do
     %User{}
-    |> User.changeset(attrs)
-    |> Ecto.Changeset.cast_assoc(:credential, with: &Credential.changeset/2)
+    |> User.registration_changeset(attrs)
     |> Repo.insert()
   end
 
@@ -77,7 +87,6 @@ defmodule Blog.Accounts do
   def update_user(%User{} = user, attrs) do
     user
     |> User.changeset(attrs)
-    |> Ecto.Changeset.cast_assoc(:credential, with: &Credential.changeset/2)
     |> Repo.update()
   end
 
@@ -111,111 +120,26 @@ defmodule Blog.Accounts do
   end
 
   @doc """
+  Attempts to authenticate a user.
 
+  ## Examples
+
+      iex> authenticate_by_username_password
   """
-  def authenticate_by_email_password(email, _password) do
-    query =
-      from u in User,
-        inner_join: c in assoc(u, :credential),
-        where: c.email == ^email
+  def authenticate_by_username_password(username, given_pwd) do
+    user = get_user_by(handle: username)
 
-    case Repo.one(query) do
-      %User{} = user -> {:ok, user}
-      nil -> {:error, :unauthorized}
+    cond do
+      user && Pbkdf2.verify_pass(given_pwd, user.password_hash) ->
+        {:ok, user}
+
+      user ->
+        {:error, :unauthorized}
+
+      # change this to _ -> ??
+      true ->
+        Pbkdf2.no_user_verify()
+        {:error, :not_found}
     end
-  end
-
-  @doc """
-  Returns the list of credentials.
-
-  ## Examples
-
-      iex> list_credentials()
-      [%Credential{}, ...]
-
-  """
-  def list_credentials do
-    Repo.all(Credential)
-  end
-
-  @doc """
-  Gets a single credential.
-
-  Raises `Ecto.NoResultsError` if the Credential does not exist.
-
-  ## Examples
-
-      iex> get_credential!(123)
-      %Credential{}
-
-      iex> get_credential!(456)
-      ** (Ecto.NoResultsError)
-
-  """
-  def get_credential!(id), do: Repo.get!(Credential, id)
-
-  @doc """
-  Creates a credential.
-
-  ## Examples
-
-      iex> create_credential(%{field: value})
-      {:ok, %Credential{}}
-
-      iex> create_credential(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def create_credential(attrs \\ %{}) do
-    %Credential{}
-    |> Credential.changeset(attrs)
-    |> Repo.insert()
-  end
-
-  @doc """
-  Updates a credential.
-
-  ## Examples
-
-      iex> update_credential(credential, %{field: new_value})
-      {:ok, %Credential{}}
-
-      iex> update_credential(credential, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def update_credential(%Credential{} = credential, attrs) do
-    credential
-    |> Credential.changeset(attrs)
-    |> Repo.update()
-  end
-
-  @doc """
-  Deletes a Credential.
-
-  ## Examples
-
-      iex> delete_credential(credential)
-      {:ok, %Credential{}}
-
-      iex> delete_credential(credential)
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def delete_credential(%Credential{} = credential) do
-    Repo.delete(credential)
-  end
-
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking credential changes.
-
-  ## Examples
-
-      iex> change_credential(credential)
-      %Ecto.Changeset{source: %Credential{}}
-
-  """
-  def change_credential(%Credential{} = credential) do
-    Credential.changeset(credential, %{})
   end
 end

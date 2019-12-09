@@ -26,9 +26,6 @@
             <%= link "Staff", to: Routes.admin_user_path(@conn, :index) %>
           </li>
           <li>
-            <%= link "Authors", to: Routes.cms_author_path(@conn, :index) %>
-          </li>
-          <li>
             <%= link "Posts", to: Routes.cms_post_path(@conn, :index) %>
           </li>
           <li>
@@ -36,10 +33,13 @@
           </li>
           <li><a href="/cms/settings">Settings</a></li>
         </ul>
-        <%= form_for @conn, Routes.session_path(@conn, :delete), [method: :delete, as: :user], fn _ -> %>
-          <div class="form-group">
-            <%= submit "logout" %>
-          </div>
+        <%= if @current_user do %>
+          <li>
+            <%= @current_user.handle %>
+          </li>
+          <li>
+            <%= link "Log out", to: Routes.session_path(@conn, :delete), method: "delete" %>
+          </li>
         <% end %>
       </nav>
     </header>

@@ -1,32 +1,33 @@
 defmodule BlogWeb.CMS.PostControllerTest do
   use BlogWeb.ConnCase
 
-  alias Blog.CMS
+  alias Blog.{Accounts, CMS}
 
   @create_attrs %{
     content: "some content",
     excerpt: "some excerpt",
-    slug: "some slug",
-    title: "some title",
-    views: 42
+    slug: "some-slug",
+    title: "some title"
   }
   @update_attrs %{
     content: "some updated content",
     excerpt: "some updated excerpt",
-    slug: "some updated slug",
-    title: "some updated title",
-    views: 43
+    slug: "some-updated-slug",
+    title: "some updated title"
   }
-  @invalid_attrs %{content: nil, excerpt: nil, slug: nil, title: nil, views: nil}
+  @invalid_attrs %{content: nil, excerpt: nil, slug: nil, title: nil}
 
   def fixture(:post) do
-    {:ok, post} = CMS.create_post(@create_attrs)
+    {:ok, user} = Accounts.create_user(%{handle: "foobar", password: "123456"})
+    {:ok, post} = CMS.create_post(user, @create_attrs)
+
     post
   end
 
   describe "index" do
     test "lists all posts", %{conn: conn} do
       conn = get(conn, Routes.cms_post_path(conn, :index))
+
       assert html_response(conn, 200) =~ "Listing Posts"
     end
   end
@@ -34,6 +35,7 @@ defmodule BlogWeb.CMS.PostControllerTest do
   describe "new post" do
     test "renders form", %{conn: conn} do
       conn = get(conn, Routes.cms_post_path(conn, :new))
+
       assert html_response(conn, 200) =~ "New Post"
     end
   end
@@ -51,6 +53,7 @@ defmodule BlogWeb.CMS.PostControllerTest do
 
     test "renders errors when data is invalid", %{conn: conn} do
       conn = post(conn, Routes.cms_post_path(conn, :create), post: @invalid_attrs)
+
       assert html_response(conn, 200) =~ "New Post"
     end
   end
@@ -60,6 +63,7 @@ defmodule BlogWeb.CMS.PostControllerTest do
 
     test "renders form for editing chosen post", %{conn: conn, post: post} do
       conn = get(conn, Routes.cms_post_path(conn, :edit, post))
+
       assert html_response(conn, 200) =~ "Edit Post"
     end
   end
@@ -72,11 +76,12 @@ defmodule BlogWeb.CMS.PostControllerTest do
       assert redirected_to(conn) == Routes.cms_post_path(conn, :show, post)
 
       conn = get(conn, Routes.cms_post_path(conn, :show, post))
-      assert html_response(conn, 200) =~ "some updated content"
+      assert html_response(conn, 200) =~ Map.get(@update_attrs, :content)
     end
 
     test "renders errors when data is invalid", %{conn: conn, post: post} do
       conn = put(conn, Routes.cms_post_path(conn, :update, post), post: @invalid_attrs)
+
       assert html_response(conn, 200) =~ "Edit Post"
     end
   end
@@ -96,6 +101,7 @@ defmodule BlogWeb.CMS.PostControllerTest do
 
   defp create_post(_) do
     post = fixture(:post)
+
     {:ok, post: post}
   end
 end

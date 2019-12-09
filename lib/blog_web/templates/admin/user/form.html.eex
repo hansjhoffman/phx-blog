@@ -5,17 +5,13 @@
     </div>
   <% end %>
 
-  <%= label f, :full_name %>
-  <%= text_input f, :full_name %>
-  <%= error_tag f, :full_name %>
+  <%= label f, :handle %>
+  <%= text_input f, :handle %>
+  <%= error_tag f, :handle %>
 
-  <div class="form-group">
-    <%= inputs_for f, :credential, fn cf -> %>
-      <%= label cf, :email %>
-      <%= text_input cf, :email %>
-      <%= error_tag cf, :email %>
-    <% end %>
-  </div>
+  <%= label f, :password %>
+  <%= password_input f, :password %>
+  <%= error_tag f, :password %>
 
   <div>
     <%= submit "Save" %>

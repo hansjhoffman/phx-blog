@@ -7,6 +7,7 @@ defmodule Blog.CMS.Tag do
   schema "tags" do
     field :slug, :string
     field :title, :string
+
     many_to_many :posts, Post, join_through: "posts_tags"
 
     timestamps()
@@ -15,8 +16,8 @@ defmodule Blog.CMS.Tag do
   @doc false
   def changeset(tag, attrs) do
     tag
-    |> cast(attrs, [:title, :slug])
-    |> validate_required([:title, :slug])
+    |> cast(attrs, [:slug, :title])
+    |> validate_required([:slug, :title])
     |> unique_constraint(:slug)
   end
 end

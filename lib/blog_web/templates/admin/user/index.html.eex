@@ -1,15 +1,15 @@
-<h1>Listing Authors</h1>
+<h1>List Users</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Full name</th>
+      <th>Handle</th>
     </tr>
   </thead>
   <tbody>
     <%= for user <- @users do %>
       <tr>
-        <td><%= user.full_name %></td>
+        <td><%= user.handle %></td>
 
         <td>
           <span><%= link "Show", to: Routes.admin_user_path(@conn, :show, user) %></span>

@@ -1,15 +1,10 @@
-<h1>Show Author</h1>
+<h1>Show User</h1>
 
 <ul>
 
   <li>
-    <strong>Full name:</strong>
-    <%= @user.full_name %>
-  </li>
-
-  <li>
-    <strong>Email:</strong>
-    <%= @user.credential.email %>
+    <strong>Handle:</strong>
+    <%= @user.handle %>
   </li>
 
 </ul>

@@ -2,30 +2,30 @@ defmodule BlogWeb.SessionController do
   use BlogWeb, :controller
 
   alias Blog.Accounts
+  alias BlogWeb.Authorizer
 
   def new(conn, _) do
     render(conn, "new.html")
   end
 
-  def create(conn, %{"user" => %{"email" => email, "password" => password}}) do
-    case Accounts.authenticate_by_email_password(email, password) do
+  def create(conn, %{"session" => %{"handle" => handle, "password" => given_pwd}}) do
+    case Accounts.authenticate_by_username_password(handle, given_pwd) do
       {:ok, user} ->
         conn
-        |> put_flash(:info, "Welcome back!")
-        |> put_session(:user_id, user.id)
-        |> configure_session(renew: true)
-        |> redirect(to: "/")
+        |> Authorizer.login(user)
+        |> put_flash(:info, "Welcome back #{user.handle}!")
+        |> redirect(to: Routes.admin_page_path(conn, :index))
 
-      {:error, :unauthorized} ->
+      {:error, _reason} ->
         conn
-        |> put_flash(:error, "Bad email/password combination")
-        |> redirect(to: Routes.session_path(conn, :new))
+        |> put_flash(:error, "Invalid username/password combination")
+        |> render(conn, "new.html")
     end
   end
 
   def delete(conn, _) do
     conn
-    |> configure_session(drop: true)
-    |> redirect(to: "/")
+    |> Authorizer.logout()
+    |> render(conn, "new.html")
   end
 end

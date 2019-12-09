@@ -2,15 +2,17 @@ defmodule BlogWeb.Admin.UserController do
   use BlogWeb, :controller
 
   alias Blog.Accounts
-  alias Blog.Accounts.User
+  alias BlogWeb.Authorizer
 
   def index(conn, _params) do
     users = Accounts.list_users()
+
     render(conn, "index.html", users: users)
   end
 
   def new(conn, _params) do
-    changeset = Accounts.change_user(%User{})
+    changeset = Accounts.change_user(%Accounts.User{})
+
     render(conn, "new.html", changeset: changeset)
   end
 
@@ -18,33 +20,37 @@ defmodule BlogWeb.Admin.UserController do
     case Accounts.create_user(user_params) do
       {:ok, user} ->
         conn
-        |> put_flash(:info, "User created successfully.")
-        |> redirect(to: Routes.cms_user_path(conn, :show, user))
+        |> Authorizer.login(user)
+        |> put_flash(:info, "#{user.handle} created!")
+        |> redirect(to: Routes.admin_user_path(conn, :show, user))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
   end
 
+  # need to handle user not found!!
   def show(conn, %{"id" => id}) do
-    user = Accounts.get_user!(id)
+    user = Accounts.get_user(id)
+
     render(conn, "show.html", user: user)
   end
 
   def edit(conn, %{"id" => id}) do
-    user = Accounts.get_user!(id)
+    user = Accounts.get_user(id)
     changeset = Accounts.change_user(user)
+
     render(conn, "edit.html", user: user, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "user" => user_params}) do
-    user = Accounts.get_user!(id)
+    user = Accounts.get_user(id)
 
     case Accounts.update_user(user, user_params) do
       {:ok, user} ->
         conn
         |> put_flash(:info, "User updated successfully.")
-        |> redirect(to: Routes.cms_user_path(conn, :show, user))
+        |> redirect(to: Routes.admin_user_path(conn, :show, user))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", user: user, changeset: changeset)
@@ -52,11 +58,11 @@ defmodule BlogWeb.Admin.UserController do
   end
 
   def delete(conn, %{"id" => id}) do
-    user = Accounts.get_user!(id)
+    user = Accounts.get_user(id)
     {:ok, _user} = Accounts.delete_user(user)
 
     conn
     |> put_flash(:info, "User deleted successfully.")
-    |> redirect(to: Routes.cms_user_path(conn, :index))
+    |> redirect(to: Routes.admin_user_path(conn, :index))
   end
 end

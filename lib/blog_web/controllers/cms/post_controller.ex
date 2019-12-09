@@ -28,21 +28,25 @@ defmodule BlogWeb.CMS.PostController do
   def edit(conn, %{"id" => id}) do
     post = CMS.get_post!(id)
     changeset = CMS.change_post(post)
+
     render(conn, "edit.html", post: post, changeset: changeset)
   end
 
   def index(conn, _params) do
     posts = CMS.list_posts()
+
     render(conn, "index.html", posts: posts)
   end
 
   def new(conn, _params) do
     changeset = CMS.change_post(%Post{})
+
     render(conn, "new.html", changeset: changeset)
   end
 
   def show(conn, %{"id" => id}) do
     post = CMS.get_post!(id)
+
     render(conn, "show.html", post: post)
   end
 

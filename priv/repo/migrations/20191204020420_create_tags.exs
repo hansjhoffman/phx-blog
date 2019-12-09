@@ -3,8 +3,8 @@ defmodule Blog.Repo.Migrations.CreateTags do
 
   def change do
     create table(:tags) do
-      add :title, :string, null: false
       add :slug, :string, null: false
+      add :title, :string, null: false
 
       timestamps()
     end

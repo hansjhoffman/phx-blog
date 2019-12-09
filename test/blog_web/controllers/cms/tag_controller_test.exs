@@ -3,18 +3,20 @@ defmodule BlogWeb.CMS.TagControllerTest do
 
   alias Blog.CMS
 
-  @create_attrs %{slug: "some slug", title: "some title"}
-  @update_attrs %{slug: "some updated slug", title: "some updated title"}
+  @create_attrs %{slug: "some-slug", title: "some title"}
+  @update_attrs %{slug: "some-updated-slug", title: "some updated title"}
   @invalid_attrs %{slug: nil, title: nil}
 
   def fixture(:tag) do
     {:ok, tag} = CMS.create_tag(@create_attrs)
+
     tag
   end
 
   describe "index" do
     test "lists all tags", %{conn: conn} do
       conn = get(conn, Routes.cms_tag_path(conn, :index))
+
       assert html_response(conn, 200) =~ "Listing Tags"
     end
   end
@@ -22,6 +24,7 @@ defmodule BlogWeb.CMS.TagControllerTest do
   describe "new tag" do
     test "renders form", %{conn: conn} do
       conn = get(conn, Routes.cms_tag_path(conn, :new))
+
       assert html_response(conn, 200) =~ "New Tag"
     end
   end
@@ -39,6 +42,7 @@ defmodule BlogWeb.CMS.TagControllerTest do
 
     test "renders errors when data is invalid", %{conn: conn} do
       conn = post(conn, Routes.cms_tag_path(conn, :create), tag: @invalid_attrs)
+
       assert html_response(conn, 200) =~ "New Tag"
     end
   end
@@ -48,6 +52,7 @@ defmodule BlogWeb.CMS.TagControllerTest do
 
     test "renders form for editing chosen tag", %{conn: conn, tag: tag} do
       conn = get(conn, Routes.cms_tag_path(conn, :edit, tag))
+
       assert html_response(conn, 200) =~ "Edit Tag"
     end
   end
@@ -60,11 +65,12 @@ defmodule BlogWeb.CMS.TagControllerTest do
       assert redirected_to(conn) == Routes.cms_tag_path(conn, :show, tag)
 
       conn = get(conn, Routes.cms_tag_path(conn, :show, tag))
-      assert html_response(conn, 200) =~ "some updated slug"
+      assert html_response(conn, 200) =~ Map.get(@update_attrs, :slug)
     end
 
     test "renders errors when data is invalid", %{conn: conn, tag: tag} do
       conn = put(conn, Routes.cms_tag_path(conn, :update, tag), tag: @invalid_attrs)
+
       assert html_response(conn, 200) =~ "Edit Tag"
     end
   end
@@ -84,6 +90,7 @@ defmodule BlogWeb.CMS.TagControllerTest do
 
   defp create_tag(_) do
     tag = fixture(:tag)
+
     {:ok, tag: tag}
   end
 end
