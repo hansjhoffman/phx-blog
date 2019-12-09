@@ -1,4 +1,8 @@
 defmodule Blog.CMS.Tag do
+  @moduledoc """
+  Schema for a tag
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 

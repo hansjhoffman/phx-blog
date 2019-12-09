@@ -1,4 +1,8 @@
 defmodule BlogWeb.Meta.AdminTitle do
+  @moduledoc """
+  SEO helpers for page titles
+  """
+
   alias BlogWeb.Admin.PageView
 
   @suffix "Admin"

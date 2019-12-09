@@ -1,4 +1,8 @@
 defmodule Blog.Accounts.User do
+  @moduledoc """
+  Schema for system & blog user
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 

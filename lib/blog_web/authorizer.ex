@@ -1,4 +1,8 @@
 defmodule BlogWeb.Authorizer do
+  @moduledoc """
+  Provides auth helper functions
+  """
+
   import Plug.Conn
 
   alias Blog.Accounts

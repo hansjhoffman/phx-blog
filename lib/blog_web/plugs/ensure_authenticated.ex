@@ -1,4 +1,8 @@
 defmodule BlogWeb.Plugs.EnsureAuthenticated do
+  @moduledoc """
+  Ensures @current_user is in the conn or redirects to login
+  """
+
   import Plug.Conn
   # import Phoenix.Controller
 

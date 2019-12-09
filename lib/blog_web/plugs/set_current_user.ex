@@ -1,4 +1,8 @@
 defmodule BlogWeb.Plugs.SetCurrentUser do
+  @moduledoc """
+  Attempts to set the @current_user in the conn
+  """
+  
   import Plug.Conn
 
   alias Blog.Accounts

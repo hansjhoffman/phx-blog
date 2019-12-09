@@ -1,4 +1,8 @@
 defmodule BlogWeb.Helpers.SharedHelpers do
+  @moduledoc """
+  Project wide helpers
+  """
+
   # def active_class(conn, matchers, class_name \\ "is-active")
   # def active_class(conn, matchers, class_name), do: "fix_me"
 
