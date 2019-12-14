@@ -1,0 +1,14 @@
+<h1>Show Post</h1>
+
+<strong>Title:</strong>
+<%= @post.title %>
+
+<strong>Excerpt:</strong>
+<%= @post.excerpt %>
+
+<strong>Content:</strong>
+<%= @post.content %>
+
+<%= if @current_user do %>
+  <%= link "Edit", to: Routes.admin_post_path(@conn, :edit, @post)%>
+<% end %>

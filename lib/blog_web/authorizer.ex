@@ -25,33 +25,10 @@ defmodule BlogWeb.Authorizer do
     |> configure_session(drop: true)
   end
 
+  @doc """
+  Does current_user have a valid session
+  """
   def signed_in?(conn) do
     conn.assigns[:current_user]
   end
-
-  @doc """
-  Restricts a route or action to logged in users
-  """
-  # def ensure_authenticated(conn, _opts) do
-  #   if conn.assigns.current_user do
-  #     conn
-  #   else
-  #     conn
-  #     # |> put_flash(:error, "You must be logged in to access that page")
-  #     # |> redirect(to: Routes.session_path(conn, :new))
-  #     |> halt()
-  #   end
-  # end
-  # defp authorize_page(conn, _) do
-  #   page = CMS.get_page!(conn.params["id"])
-  #
-  #   if conn.assigns.current_author.id == page.author_id do
-  #     assign(conn, :page, page)
-  #   else
-  #     conn
-  #     |> put_flash(:error, "You can't modify that page")
-  #     |> redirect(to: Routes.cms_page_path(conn, :index))
-  #     |> halt()
-  #   end
-  # end
 end

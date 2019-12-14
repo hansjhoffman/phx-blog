@@ -9,12 +9,12 @@ defmodule BlogWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Plugs.SetCurrentUser
   end
 
   pipeline :protected do
     plug :put_layout, {BlogWeb.LayoutView, :protected}
-    plug Plugs.SetCurrentUser
-    # plug Plugs.EnsureAuthenticated
+    plug Plugs.EnsureAuthenticated
   end
 
   pipeline :feed do
@@ -24,21 +24,23 @@ defmodule BlogWeb.Router do
   scope "/", BlogWeb do
     pipe_through [:browser]
 
-    resources "/sessions", SessionController,
-      only: [:new, :create, :delete],
-      singleton: true
+    get "/", PortfolioController, :index
+
+    get "/blog", BlogController, :index
+    resources "/blog/:slug", BlogController, only: [:index, :show], as: :post
+
+    get "/courses", CoursesController, :index
+
+    resources "/in", SessionController, only: [:new, :create], as: :sign_in
+    post "/out", SessionController, :delete, as: :sign_out
   end
 
   scope "/admin", BlogWeb.Admin, as: :admin do
     pipe_through [:browser, :protected]
 
-    get "/", PageController, :index
+    get "/", DashboardController, :index
+
     resources "/users", UserController
-  end
-
-  scope "/cms", BlogWeb.CMS, as: :cms do
-    pipe_through [:browser, :protected]
-
     resources "/posts", PostController
     resources "/tags", TagController
   end

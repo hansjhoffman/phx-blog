@@ -1,4 +1,4 @@
-defmodule BlogWeb.CMS.TagController do
+defmodule BlogWeb.Admin.TagController do
   use BlogWeb, :controller
 
   alias Blog.CMS
@@ -19,7 +19,7 @@ defmodule BlogWeb.CMS.TagController do
       {:ok, tag} ->
         conn
         |> put_flash(:info, "Tag created successfully.")
-        |> redirect(to: Routes.cms_tag_path(conn, :show, tag))
+        |> redirect(to: Routes.admin_tag_path(conn, :show, tag))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -44,7 +44,7 @@ defmodule BlogWeb.CMS.TagController do
       {:ok, tag} ->
         conn
         |> put_flash(:info, "Tag updated successfully.")
-        |> redirect(to: Routes.cms_tag_path(conn, :show, tag))
+        |> redirect(to: Routes.admin_tag_path(conn, :show, tag))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", tag: tag, changeset: changeset)
@@ -57,6 +57,6 @@ defmodule BlogWeb.CMS.TagController do
 
     conn
     |> put_flash(:info, "Tag deleted successfully.")
-    |> redirect(to: Routes.cms_tag_path(conn, :index))
+    |> redirect(to: Routes.admin_tag_path(conn, :index))
   end
 end

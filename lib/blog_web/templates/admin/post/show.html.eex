@@ -29,5 +29,5 @@
 
 </ul>
 
-<span><%= link "Edit", to: Routes.cms_post_path(@conn, :edit, @post) %></span>
-<span><%= link "Back", to: Routes.cms_post_path(@conn, :index) %></span>
+<span><%= link "Edit", to: Routes.admin_post_path(@conn, :edit, @post) %></span>
+<span><%= link "Back", to: Routes.admin_post_path(@conn, :index) %></span>

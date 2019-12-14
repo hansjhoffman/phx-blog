@@ -4,8 +4,15 @@ defmodule BlogWeb.SessionController do
   alias Blog.Accounts
   alias BlogWeb.Authorizer
 
-  def new(conn, _) do
-    render(conn, "new.html")
+  def new(conn, _params) do
+    case Authorizer.signed_in?(conn) do
+      nil ->
+        render(conn, "new.html")
+
+      _user ->
+        conn
+        |> redirect(to: Routes.admin_dashboard_path(conn, :index))
+    end
   end
 
   def create(conn, %{"session" => %{"handle" => handle, "password" => given_pwd}}) do
@@ -14,18 +21,19 @@ defmodule BlogWeb.SessionController do
         conn
         |> Authorizer.login(user)
         |> put_flash(:info, "Welcome back #{user.handle}!")
-        |> redirect(to: Routes.admin_page_path(conn, :index))
+        |> redirect(to: Routes.admin_dashboard_path(conn, :index))
 
       {:error, _reason} ->
         conn
         |> put_flash(:error, "Invalid username/password combination")
-        |> render(conn, "new.html")
+        |> render("new.html")
     end
   end
 
-  def delete(conn, _) do
+  def delete(conn, _params) do
     conn
     |> Authorizer.logout()
-    |> render(conn, "new.html")
+    |> redirect(to: Routes.sign_in_path(conn, :new))
+    # |> redirect(to: Routes.sign_out_path(conn, :delete))
   end
 end

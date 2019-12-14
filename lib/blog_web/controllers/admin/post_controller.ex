@@ -1,4 +1,4 @@
-defmodule BlogWeb.CMS.PostController do
+defmodule BlogWeb.Admin.PostController do
   use BlogWeb, :controller
 
   alias Blog.CMS
@@ -9,7 +9,7 @@ defmodule BlogWeb.CMS.PostController do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post created successfully.")
-        |> redirect(to: Routes.cms_post_path(conn, :show, post))
+        |> redirect(to: Routes.admin_post_path(conn, :show, post))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -22,7 +22,7 @@ defmodule BlogWeb.CMS.PostController do
 
     conn
     |> put_flash(:info, "Post deleted successfully.")
-    |> redirect(to: Routes.cms_post_path(conn, :index))
+    |> redirect(to: Routes.admin_post_path(conn, :index))
   end
 
   def edit(conn, %{"id" => id}) do
@@ -57,7 +57,7 @@ defmodule BlogWeb.CMS.PostController do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post updated successfully.")
-        |> redirect(to: Routes.cms_post_path(conn, :show, post))
+        |> redirect(to: Routes.admin_post_path(conn, :show, post))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", post: post, changeset: changeset)

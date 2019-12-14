@@ -1,10 +1,12 @@
 defmodule BlogWeb.Plugs.EnsureAuthenticated do
   @moduledoc """
-  Ensures @current_user is in the conn or redirects to login
+  Ensures a user is authenticated or redirects to login
   """
 
   import Plug.Conn
-  # import Phoenix.Controller
+  import Phoenix.Controller
+
+  alias BlogWeb.Router.Helpers, as: Routes
 
   @doc false
   def init(opts), do: opts
@@ -15,8 +17,8 @@ defmodule BlogWeb.Plugs.EnsureAuthenticated do
       conn
     else
       conn
-      # |> put_flash(:error, "You must be logged in to access that page")
-      # |> redirect(to: Routes.session_path(conn, :new))
+      |> put_flash(:error, "You must be logged in to access that page")
+      |> redirect(to: Routes.sign_in_path(conn, :new))
       |> halt()
     end
   end

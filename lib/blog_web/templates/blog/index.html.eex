@@ -1,0 +1,12 @@
+<%= if @current_user do %>
+  <%= link "New Post", to: Routes.admin_post_path(@conn, :new) %>
+<% end %>
+
+<h1>Blog posts</h1>
+<%= for post <- @posts do %>
+  <article>
+    <%= link post.title, to: Routes.post_path(@conn, :show, post) %>
+    <p><%= post.excerpt %></p>
+    <p>#tag1 #tag2</p>
+  </article>
+<% end %>

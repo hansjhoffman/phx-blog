@@ -20,16 +20,16 @@
       <nav role="navigation">
         <ul>
           <li>
-            <%= link "Dashboard", to: Routes.admin_page_path(@conn, :index) %>
+            <%= link "Dashboard", to: Routes.admin_dashboard_path(@conn, :index) %>
           </li>
           <li>
             <%= link "Staff", to: Routes.admin_user_path(@conn, :index) %>
           </li>
           <li>
-            <%= link "Posts", to: Routes.cms_post_path(@conn, :index) %>
+            <%= link "Posts", to: Routes.admin_post_path(@conn, :index) %>
           </li>
           <li>
-            <%= link "Tags", to: Routes.cms_tag_path(@conn, :index) %>
+            <%= link "Tags", to: Routes.admin_tag_path(@conn, :index) %>
           </li>
           <li><a href="/cms/settings">Settings</a></li>
         </ul>
@@ -38,7 +38,7 @@
             <%= @current_user.handle %>
           </li>
           <li>
-            <%= link "Log out", to: Routes.session_path(@conn, :delete), method: "delete" %>
+            <%= link "Log out", to: Routes.sign_out_path(@conn, :delete)%>
           </li>
         <% end %>
       </nav>
