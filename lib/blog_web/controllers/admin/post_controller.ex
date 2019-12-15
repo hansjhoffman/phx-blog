@@ -4,8 +4,16 @@ defmodule BlogWeb.Admin.PostController do
   alias Blog.CMS
   alias Blog.CMS.Post
 
+  defp get_post(titled_slug) do
+    [slug | _] = titled_slug |> String.split("-")
+
+    CMS.get_by!(Post, slug: slug)
+  end
+
   def create(conn, %{"post" => post_params}) do
-    case CMS.create_post(post_params) do
+    user = conn.assigns.current_user
+
+    case CMS.create_post(user, post_params) do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post created successfully.")
@@ -16,8 +24,10 @@ defmodule BlogWeb.Admin.PostController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    post = CMS.get_post!(id)
+  def delete(conn, %{"titled_slug" => titled_slug}) do
+    post = get_post(titled_slug)
+    IO.puts("Found post:")
+    IO.inspect(post)
     {:ok, _post} = CMS.delete_post(post)
 
     conn
@@ -25,8 +35,8 @@ defmodule BlogWeb.Admin.PostController do
     |> redirect(to: Routes.admin_post_path(conn, :index))
   end
 
-  def edit(conn, %{"id" => id}) do
-    post = CMS.get_post!(id)
+  def edit(conn, %{"titled_slug" => titled_slug}) do
+    post = get_post(titled_slug)
     changeset = CMS.change_post(post)
 
     render(conn, "edit.html", post: post, changeset: changeset)
@@ -44,14 +54,14 @@ defmodule BlogWeb.Admin.PostController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def show(conn, %{"id" => id}) do
-    post = CMS.get_post!(id)
+  def show(conn, %{"titled_slug" => titled_slug}) do
+    post = get_post(titled_slug)
 
     render(conn, "show.html", post: post)
   end
 
-  def update(conn, %{"id" => id, "post" => post_params}) do
-    post = CMS.get_post!(id)
+  def update(conn, %{"titled_slug" => titled_slug, "post" => post_params}) do
+    post = get_post(titled_slug)
 
     case CMS.update_post(post, post_params) do
       {:ok, post} ->

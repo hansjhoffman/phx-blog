@@ -2,11 +2,15 @@
   <%= link "New Post", to: Routes.admin_post_path(@conn, :new) %>
 <% end %>
 
-<h1>Blog posts</h1>
+<section>
+  <h1>Blog posts</h1>
 <%= for post <- @posts do %>
   <article>
     <%= link post.title, to: Routes.post_path(@conn, :show, post) %>
     <p><%= post.excerpt %></p>
-    <p>#tag1 #tag2</p>
+  <%= for tag <- post.tags do %>
+    <%= link "##{tag.title}", to: Routes.tag_path(@conn, :index, tag) %>
+  <% end %>
   </article>
 <% end %>
+</section>

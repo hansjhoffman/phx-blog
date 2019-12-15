@@ -9,16 +9,14 @@ defmodule Blog.CMSTest do
     @valid_attrs %{
       content: "some content",
       excerpt: "some excerpt",
-      slug: "some-slug",
       title: "some title"
     }
     @update_attrs %{
       content: "some updated content",
       excerpt: "some updated excerpt",
-      slug: "some-updated-slug",
       title: "some updated title"
     }
-    @invalid_attrs %{content: nil, excerpt: nil, slug: nil, title: nil}
+    @invalid_attrs %{content: nil, excerpt: nil, title: nil}
 
     def user_fixture() do
       {:ok, user} = Accounts.create_user(%{handle: "foobar", password: "123456"})
@@ -31,6 +29,7 @@ defmodule Blog.CMSTest do
 
       post
       |> Repo.preload(:user)
+      |> Repo.preload(:tags)
     end
 
     test "list_posts/0 returns all posts" do
@@ -50,7 +49,6 @@ defmodule Blog.CMSTest do
 
       assert post.content == Map.get(@valid_attrs, :content)
       assert post.excerpt == Map.get(@valid_attrs, :excerpt)
-      assert post.slug == Map.get(@valid_attrs, :slug)
       assert post.title == Map.get(@valid_attrs, :title)
     end
 
@@ -64,7 +62,6 @@ defmodule Blog.CMSTest do
       assert {:ok, %Post{} = post} = CMS.update_post(post, @update_attrs)
       assert post.content == Map.get(@update_attrs, :content)
       assert post.excerpt == Map.get(@update_attrs, :excerpt)
-      assert post.slug == Map.get(@update_attrs, :slug)
       assert post.title == Map.get(@update_attrs, :title)
     end
 
@@ -92,8 +89,8 @@ defmodule Blog.CMSTest do
   describe "tags" do
     alias Blog.CMS.Tag
 
-    @valid_attrs %{slug: "some-slug", title: "some title"}
-    @update_attrs %{slug: "some-updated-slug", title: "some updated title"}
+    @valid_attrs %{slug: "some-title", title: "some title"}
+    @update_attrs %{slug: "some-updated-title", title: "some updated title"}
     @invalid_attrs %{slug: nil, title: nil}
 
     def tag_fixture(attrs \\ %{}) do
@@ -131,7 +128,6 @@ defmodule Blog.CMSTest do
       tag = tag_fixture()
 
       assert {:ok, %Tag{} = tag} = CMS.update_tag(tag, @update_attrs)
-      assert tag.slug == Map.get(@update_attrs, :slug)
       assert tag.title == Map.get(@update_attrs, :title)
     end
 

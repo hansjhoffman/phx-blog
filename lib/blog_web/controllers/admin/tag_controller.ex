@@ -6,11 +6,13 @@ defmodule BlogWeb.Admin.TagController do
 
   def index(conn, _params) do
     tags = CMS.list_tags()
+
     render(conn, "index.html", tags: tags)
   end
 
   def new(conn, _params) do
     changeset = CMS.change_tag(%Tag{})
+
     render(conn, "new.html", changeset: changeset)
   end
 
@@ -26,19 +28,21 @@ defmodule BlogWeb.Admin.TagController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    tag = CMS.get_tag!(id)
+  def show(conn, %{"slug" => slug}) do
+    tag = CMS.get_by!(Tag, slug: slug)
+
     render(conn, "show.html", tag: tag)
   end
 
-  def edit(conn, %{"id" => id}) do
-    tag = CMS.get_tag!(id)
+  def edit(conn, %{"slug" => slug}) do
+    tag = CMS.get_by!(Tag, slug: slug)
     changeset = CMS.change_tag(tag)
+
     render(conn, "edit.html", tag: tag, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "tag" => tag_params}) do
-    tag = CMS.get_tag!(id)
+  def update(conn, %{"slug" => slug, "tag" => tag_params}) do
+    tag = CMS.get_by!(Tag, slug: slug)
 
     case CMS.update_tag(tag, tag_params) do
       {:ok, tag} ->
@@ -51,8 +55,8 @@ defmodule BlogWeb.Admin.TagController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    tag = CMS.get_tag!(id)
+  def delete(conn, %{"slug" => slug}) do
+    tag = CMS.get_by!(Tag, slug: slug)
     {:ok, _tag} = CMS.delete_tag(tag)
 
     conn

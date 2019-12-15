@@ -24,3 +24,18 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   mix phx.gen.html CMS Media images url:string --web CMS
   mix phx.gen.html CMS Media videos url:string --web CMS
   ```
+
+## TODO
+- Refactor tags to use slugs instead of id
+- Logout functionality
+- Fix issue: (Phoenix.Router.NoRouteError) no route found for GET /icons/icon-144x144.png
+- Mix credo
+- Image/Video upload via Arc? or just host somewhere?
+- Post views
+- Post status
+- Featured post boolean property
+- Testing
+- Admin css
+- Liveview markdown editor
+- App css
+- Turbolinks (https://github.com/kagux/turbolinks_plug) or ETS (https://alchemist.camp/episodes/ets-cache)

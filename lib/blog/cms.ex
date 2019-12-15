@@ -22,26 +22,41 @@ defmodule Blog.CMS do
     Post
     |> Repo.all()
     |> Repo.preload(:user)
+    |> Repo.preload(:tags)
   end
 
+  def get_posts_by_tag_slug(slug) do
+    Repo.all(
+      from p in Post,
+        join: t in assoc(p, :tags),
+        where: t.slug == ^slug
+    )
+  end
+
+  # All featured posts, all with given status
+  # def get_all_by() do
+  #
+  # end
+
   @doc """
-  Gets a single post.
+  Gets a single post by: id, title or slug.
 
   Raises `Ecto.NoResultsError` if the Post does not exist.
 
   ## Examples
 
-      iex> get_post!(123)
+      iex> get_by!(Post, slug: "61e2f0db67")
       %Post{}
 
-      iex> get_post!(456)
+      iex> get_by!(Post, id: 42)
       ** (Ecto.NoResultsError)
 
   """
-  def get_post!(id) do
+  def get_by!(Post, params) do
     Post
-    |> Repo.get!(id)
+    |> Repo.get_by!(params)
     |> Repo.preload(:user)
+    |> Repo.preload(:tags)
   end
 
   @doc """
@@ -58,7 +73,7 @@ defmodule Blog.CMS do
   """
   def create_post(%User{} = user, attrs \\ %{}) do
     %Post{}
-    |> Post.changeset(attrs)
+    |> Post.create_changeset(attrs)
     |> Ecto.Changeset.put_change(:user_id, user.id)
     |> Repo.insert()
   end
@@ -124,20 +139,23 @@ defmodule Blog.CMS do
   end
 
   @doc """
-  Gets a single tag.
+  Gets a single tag by: id, slug.
 
   Raises `Ecto.NoResultsError` if the Tag does not exist.
 
   ## Examples
 
-      iex> get_tag!(123)
+      iex> get_by!(Tag, slug: "elm")
       %Tag{}
 
-      iex> get_tag!(456)
+      iex> get_by!(Tag, id: 42)
       ** (Ecto.NoResultsError)
 
   """
-  def get_tag!(id), do: Repo.get!(Tag, id)
+  def get_by!(Tag, params) do
+    Tag
+    |> Repo.get_by!(params)
+  end
 
   @doc """
   Creates a tag.
@@ -153,7 +171,7 @@ defmodule Blog.CMS do
   """
   def create_tag(attrs \\ %{}) do
     %Tag{}
-    |> Tag.changeset(attrs)
+    |> Tag.create_changeset(attrs)
     |> Repo.insert()
   end
 

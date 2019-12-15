@@ -1,13 +1,24 @@
-<h1>Show Post</h1>
+<h1>Post Details</h1>
 
-<strong>Title:</strong>
+<h3>Title:</h3>
 <%= @post.title %>
 
-<strong>Excerpt:</strong>
+<h5>Date:</h5>
+<%= Timex.format!(@post.updated_at, "%m/%d/%Y", :strftime) %>
+
+<h5>Read length:</h5>
+<p>5 min</p>
+
+<h5>Excerpt:</h5>
 <%= @post.excerpt %>
 
-<strong>Content:</strong>
+<h5>Content:</h5>
 <%= @post.content %>
+
+<h5>Tags:</h5>
+<%= for tag <- @post.tags do %>
+  <%= link "##{tag.title}", to: Routes.tag_path(@conn, :index, tag) %>
+<% end %>
 
 <%= if @current_user do %>
   <%= link "Edit", to: Routes.admin_post_path(@conn, :edit, @post)%>

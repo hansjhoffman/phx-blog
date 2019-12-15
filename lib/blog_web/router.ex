@@ -27,9 +27,11 @@ defmodule BlogWeb.Router do
     get "/", PortfolioController, :index
 
     get "/blog", BlogController, :index
-    resources "/blog/:slug", BlogController, only: [:index, :show], as: :post
+    get "/blog/:titled_slug", BlogController, :show, as: :post
 
-    get "/courses", CoursesController, :index
+    get "/tags/:slug", TagController, :index
+
+    get "/courses", CourseController, :index
 
     resources "/in", SessionController, only: [:new, :create], as: :sign_in
     post "/out", SessionController, :delete, as: :sign_out
@@ -41,7 +43,7 @@ defmodule BlogWeb.Router do
     get "/", DashboardController, :index
 
     resources "/users", UserController
-    resources "/posts", PostController
-    resources "/tags", TagController
+    resources "/posts", PostController, param: "titled_slug"
+    resources "/tags", TagController, param: "slug"
   end
 end

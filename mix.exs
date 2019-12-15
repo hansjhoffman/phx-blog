@@ -20,7 +20,7 @@ defmodule Blog.MixProject do
   def application do
     [
       mod: {Blog.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :timex]
     ]
   end
 
@@ -44,6 +44,7 @@ defmodule Blog.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:pbkdf2_elixir, "~> 1.0"},
+      {:timex, "~> 3.6"},
       {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false}
     ]
   end

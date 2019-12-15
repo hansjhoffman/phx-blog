@@ -7,7 +7,7 @@ defmodule Blog.CMS.Post do
   import Ecto.Changeset
 
   alias Blog.Accounts.User
-  alias Blog.CMS.Tag
+  alias Blog.CMS.{StringGenerator, Tag}
 
   schema "posts" do
     field :content, :string
@@ -24,9 +24,24 @@ defmodule Blog.CMS.Post do
   @doc false
   def changeset(post, attrs) do
     post
-    |> cast(attrs, [:content, :excerpt, :slug, :title])
-    |> validate_required([:content, :excerpt, :slug, :title])
+    |> cast(attrs, [:content, :excerpt, :title])
+    |> validate_required([:content, :excerpt, :title])
+  end
+
+  @doc false
+  def create_changeset(post, attrs) do
+    post
+    |> cast(attrs, [:content, :excerpt, :title])
+    |> validate_required([:content, :excerpt, :title])
+    |> generate_slug()
     |> unique_constraint(:slug)
     |> foreign_key_constraint(:user_id)
+  end
+
+  defp generate_slug(changeset) do
+    case fetch_change(changeset, :title) do
+      {:ok, title} -> put_change(changeset, :slug, StringGenerator.unique_string_of_length(10))
+      :error -> changeset
+    end
   end
 end

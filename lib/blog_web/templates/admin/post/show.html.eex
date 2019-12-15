@@ -13,11 +13,6 @@
   </li>
 
   <li>
-    <strong>Views:</strong>
-    <%= @post.views %>
-  </li>
-
-  <li>
     <strong>Slug:</strong>
     <%= @post.slug %>
   </li>

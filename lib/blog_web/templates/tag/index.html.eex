@@ -1,0 +1,4 @@
+<h1>Posts with tag: <%= tag_slug(@conn) %></h1>
+<%= for post <- @posts do %>
+  <p><%= post.title %></p>
+<% end %>
