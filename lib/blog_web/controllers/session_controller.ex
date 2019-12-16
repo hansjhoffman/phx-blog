@@ -34,7 +34,5 @@ defmodule BlogWeb.SessionController do
     conn
     |> Authorizer.logout()
     |> redirect(to: Routes.sign_in_path(conn, :new))
-
-    # |> redirect(to: Routes.sign_out_path(conn, :delete))
   end
 end

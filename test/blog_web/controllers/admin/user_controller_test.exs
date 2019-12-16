@@ -1,4 +1,4 @@
-defmodule BlogWeb.UserControllerTest do
+defmodule BlogWeb.Admin.UserControllerTest do
   use BlogWeb.ConnCase
 
   alias Blog.Accounts
@@ -8,8 +8,9 @@ defmodule BlogWeb.UserControllerTest do
   @invalid_attrs %{first_name: nil, last_name: nil}
 
   def fixture(:user) do
-    {:ok, user} = Accounts.create_user(@create_attrs)
-    user
+    with {:ok, user} <- Accounts.create_user(@create_attrs) do
+      user
+    end
   end
 
   describe "index" do

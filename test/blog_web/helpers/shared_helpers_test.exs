@@ -3,15 +3,19 @@ defmodule BlogWeb.Helpers.SharedHelpersTest do
 
   alias BlogWeb.Helpers.SharedHelpers
 
-  test "slugify_title/1 with a valid, lowercase title" do
-    assert SharedHelpers.slugify_title("this is a test") == "this-is-a-test"
+  test "slugify/1 with a valid, lowercase title" do
+    assert SharedHelpers.slugify("this is a test") == "this-is-a-test"
   end
 
-  test "slugify_title/1 with a valid, mix-case title" do
-    assert SharedHelpers.slugify_title("tHiS iS a TeSt") == "this-is-a-test"
+  test "slugify/1 with a valid, mix-case title" do
+    assert SharedHelpers.slugify("tHiS iS a TeSt") == "this-is-a-test"
   end
 
-  test "slugify_title/1 with no title" do
-    assert SharedHelpers.slugify_title() == ""
+  test "slugify/1 with a invalid chars" do
+    assert SharedHelpers.slugify("%*(This) is *a test1") == "this-is-a-test1"
+  end
+
+  test "slugify/1 with no title" do
+    assert SharedHelpers.slugify() == ""
   end
 end

@@ -26,8 +26,6 @@ defmodule BlogWeb.Admin.PostController do
 
   def delete(conn, %{"titled_slug" => titled_slug}) do
     post = get_post(titled_slug)
-    IO.puts("Found post:")
-    IO.inspect(post)
     {:ok, _post} = CMS.delete_post(post)
 
     conn

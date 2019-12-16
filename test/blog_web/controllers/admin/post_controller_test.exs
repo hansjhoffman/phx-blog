@@ -1,4 +1,4 @@
-defmodule BlogWeb.CMS.PostControllerTest do
+defmodule BlogWeb.Admin.PostControllerTest do
   use BlogWeb.ConnCase
 
   alias Blog.{Accounts, CMS}
@@ -6,22 +6,20 @@ defmodule BlogWeb.CMS.PostControllerTest do
   @create_attrs %{
     content: "some content",
     excerpt: "some excerpt",
-    slug: "some-slug",
     title: "some title"
   }
   @update_attrs %{
     content: "some updated content",
     excerpt: "some updated excerpt",
-    slug: "some-updated-slug",
     title: "some updated title"
   }
-  @invalid_attrs %{content: nil, excerpt: nil, slug: nil, title: nil}
+  @invalid_attrs %{content: nil, excerpt: nil, title: nil}
 
   def fixture(:post) do
-    {:ok, user} = Accounts.create_user(%{handle: "foobar", password: "123456"})
-    {:ok, post} = CMS.create_post(user, @create_attrs)
-
-    post
+    with {:ok, user} <- Accounts.create_user(%{handle: "foobar", password: "123456"}),
+         {:ok, post} <- CMS.create_post(user, @create_attrs) do
+      post
+    end
   end
 
   describe "index" do

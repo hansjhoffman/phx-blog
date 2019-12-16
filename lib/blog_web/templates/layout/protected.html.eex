@@ -36,7 +36,7 @@
             <%= @current_user.handle %>
           </li>
           <li>
-            <%= link "Log out", to: Routes.sign_out_path(@conn, :delete)%>
+            <%= link "Log out", to: Routes.sign_out_path(@conn, :delete), method: :delete %>
           </li>
         <% end %>
       </nav>

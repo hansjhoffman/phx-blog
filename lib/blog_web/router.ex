@@ -34,7 +34,7 @@ defmodule BlogWeb.Router do
     get "/courses", CourseController, :index
 
     resources "/in", SessionController, only: [:new, :create], as: :sign_in
-    post "/out", SessionController, :delete, as: :sign_out
+    delete "/out", SessionController, :delete, as: :sign_out
   end
 
   scope "/admin", BlogWeb.Admin, as: :admin do
@@ -42,8 +42,8 @@ defmodule BlogWeb.Router do
 
     get "/", DashboardController, :index
 
-    resources "/users", UserController
     resources "/posts", PostController, param: "titled_slug"
     resources "/tags", TagController, param: "slug"
+    resources "/users", UserController
   end
 end

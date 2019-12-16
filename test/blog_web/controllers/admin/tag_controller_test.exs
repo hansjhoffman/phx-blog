@@ -1,16 +1,16 @@
-defmodule BlogWeb.CMS.TagControllerTest do
+defmodule BlogWeb.Admin.TagControllerTest do
   use BlogWeb.ConnCase
 
   alias Blog.CMS
 
-  @create_attrs %{slug: "some-slug", title: "some title"}
-  @update_attrs %{slug: "some-updated-slug", title: "some updated title"}
-  @invalid_attrs %{slug: nil, title: nil}
+  @create_attrs %{title: "some title"}
+  @update_attrs %{title: "some updated title"}
+  @invalid_attrs %{title: nil}
 
   def fixture(:tag) do
-    {:ok, tag} = CMS.create_tag(@create_attrs)
-
-    tag
+    with {:ok, tag} <- CMS.create_tag(@create_attrs) do
+      tag
+    end
   end
 
   describe "index" do

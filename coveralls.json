@@ -1,0 +1,12 @@
+{
+  "skip_files": [
+    "lib/blog.ex",
+    "lib/blog/application.ex",
+    "lib/blog/repo.ex",
+    "lib/blog_web.ex",
+    "lib/blog_web/endpoint.ex",
+    "lib/blog_web/gettext.ex",
+    "lib/blog_web/schema.ex",
+    "test/support/"
+  ]
+}
