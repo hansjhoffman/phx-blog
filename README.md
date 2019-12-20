@@ -12,12 +12,11 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
 ## TODO
-- Post views
+- Post status
 - Testing
 - App css
 - Admin css
 - Liveview markdown editor
-- Post status
 - Add Post type for text,image,video?
 - Image/Video upload via Arc? or just host somewhere manually?
   ```

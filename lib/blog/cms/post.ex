@@ -14,6 +14,7 @@ defmodule Blog.CMS.Post do
     field :excerpt, :string
     field :slug, :string
     field :title, :string
+    field :views, :integer
 
     belongs_to :user, User
     many_to_many :tags, Tag, join_through: "posts_tags"
