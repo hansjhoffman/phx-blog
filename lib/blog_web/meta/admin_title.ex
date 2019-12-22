@@ -1,21 +1,25 @@
 defmodule BlogWeb.Meta.AdminTitle do
   @moduledoc """
-  SEO helpers for page titles
+  Helpers for page titles
   """
 
   alias BlogWeb.Admin.PageView
 
-  @suffix "Admin"
+  @prefix "Admin"
 
-  def admin_page_title(assigns) do
-    assigns
-    |> get()
-    |> put_suffix()
+  def admin_page_title(assigns), do: assigns |> get()
+
+  defp get(%{view_module: view}) do
+    "#{@prefix} |> #{get_view_name(view)}s"
   end
+  defp get(_), do: nil
 
-  defp get(_), do: "FTW"
-  # defp get(_), do: nil
-
-  defp put_suffix(nil), do: @suffix
-  defp put_suffix(title), do: "#{title} |> #{@suffix}"
+  defp get_view_name(view) do
+    view
+    |> Module.split
+    |> List.last
+    |> String.replace("View", "")
+    |> String.split(~r/(?=[A-Z])/)
+    |> Enum.join(" ")
+  end
 end

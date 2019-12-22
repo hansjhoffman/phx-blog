@@ -12,14 +12,11 @@
 
   <body>
     <header>
-      <!-- <div class="">
-        <a href="/" class="">
-          <img src="<%= Routes.static_path(@conn, "/images/logo.svg") %>" class="logo" alt="logo"/>
-        </a>
-      <div> -->
       <nav role="navigation">
         <ul>
-          <li><%= link "Dashboard", to: Routes.admin_dashboard_path(@conn, :index) %></li>
+        </ul>
+        <h6>MANAGE</h6>
+        <ul>
           <li>
             <%= link "Staff", to: Routes.admin_user_path(@conn, :index) %>
           </li>
@@ -29,15 +26,16 @@
           <li>
             <%= link "Tags", to: Routes.admin_tag_path(@conn, :index) %>
           </li>
-          <li><a href="/cms/settings">Settings</a></li>
+        </ul>
+        <h6>SETTINGS</h6>
+        <ul>
+          <li><a href="/cms/settings">General</a></li>
         </ul>
         <%= if @current_user do %>
-          <li>
-            <%= @current_user.handle %>
-          </li>
-          <li>
+        <div>
+          <p><%= @current_user.handle %></p>
             <%= link "Log out", to: Routes.sign_out_path(@conn, :delete), method: :delete %>
-          </li>
+        </div>
         <% end %>
       </nav>
     </header>

@@ -17,6 +17,8 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 - App css
 - Admin css
 - Liveview markdown editor
+- Set Timezone data in ecto
+- Finish sitemap setup
 - Add Post type for text,image,video?
 - Image/Video upload via Arc? or just host somewhere manually?
   ```
