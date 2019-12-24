@@ -12,6 +12,7 @@ defmodule Blog.Accounts.User do
     field :handle, :string
     field :password, :string, virtual: true
     field :password_hash, :string
+    field :last_login, :naive_datetime
 
     has_many :posts, Post
 
@@ -21,7 +22,7 @@ defmodule Blog.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:handle])
+    |> cast(attrs, [:handle, :last_login])
     |> validate_required([:handle])
     |> validate_length(:handle, min: 1, max: 25)
     |> unique_constraint(:handle)

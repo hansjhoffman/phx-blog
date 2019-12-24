@@ -1,4 +1,6 @@
 <h1>Posts</h1>
+
+<%= if length(@posts) > 0 do %>
 <table>
   <thead>
     <tr>
@@ -27,5 +29,6 @@
   <% end %>
   </tbody>
 </table>
+<% end %>
 
-<%= link "New Post", to: Routes.admin_post_path(@conn, :new), class: "btn" %>
+<%= link "New Post", to: Routes.admin_post_path(@conn, :new), class: "btn btn--primary" %>

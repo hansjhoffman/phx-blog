@@ -127,19 +127,22 @@ defmodule Blog.Accounts do
       iex> authenticate_by_username_password
   """
   def authenticate_by_username_password(username, given_pwd) do
-    user = get_user_by(handle: username)
-
-    cond do
-      user && Pbkdf2.verify_pass(given_pwd, user.password_hash) ->
-        {:ok, user}
-
-      user ->
-        {:error, :unauthorized}
-
-      # change this to _ -> ??
-      true ->
+    case get_user_by(handle: username) do
+      nil ->
         Pbkdf2.no_user_verify()
         {:error, :not_found}
+
+      user ->
+        if Pbkdf2.verify_pass(given_pwd, user.password_hash) do
+          user |> update_last_login()
+          {:ok, user}
+        else
+          {:error, :unauthorized}
+        end
     end
+  end
+
+  defp update_last_login(%User{} = user) do
+    update_user(user, %{last_login: NaiveDateTime.utc_now()})
   end
 end

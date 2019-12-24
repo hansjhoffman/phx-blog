@@ -12,7 +12,7 @@
     <%= for user <- @users do %>
       <tr>
         <td><%= user.handle %></td>
-        <td><%= user.inserted_at %></td>
+        <td><%= user.last_login %></td>
         <td>
           <span><%= link "Show", to: Routes.admin_user_path(@conn, :show, user) %></span>
           <span><%= link "Edit", to: Routes.admin_user_path(@conn, :edit, user) %></span>

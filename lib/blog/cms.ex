@@ -38,7 +38,7 @@ defmodule Blog.CMS do
   end
 
   def get_most_viewed_posts(limit) do
-    query = 
+    query =
       from p in Post,
         order_by: [desc: :views],
         limit: ^limit

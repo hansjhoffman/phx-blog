@@ -15,7 +15,6 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 - Post status
 - Testing
 - App css
-- Admin css
 - Liveview markdown editor
 - Set Timezone data in ecto
 - Finish sitemap setup
