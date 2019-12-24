@@ -1,13 +1,10 @@
-<h1>Show User</h1>
+<h1>Users > Detail</h1>
 
-<ul>
+<strong>Handle:</strong>
+<%= @user.handle %>
 
-  <li>
-    <strong>Handle:</strong>
-    <%= @user.handle %>
-  </li>
-
-</ul>
+<strong>Created:</strong>
+<%= @user.inserted_at %>
 
 <span><%= link "Edit", to: Routes.admin_user_path(@conn, :edit, @user) %></span>
 <span><%= link "Back", to: Routes.admin_user_path(@conn, :index) %></span>

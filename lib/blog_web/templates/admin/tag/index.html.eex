@@ -1,28 +1,28 @@
 <h1>Tags</h1>
 
+<%= if length(@tags) > 0 do %>
 <table>
   <thead>
     <tr>
       <th>Title</th>
       <th>Slug</th>
-
-      <th></th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
-<%= for tag <- @tags do %>
+  <%= for tag <- @tags do %>
     <tr>
       <td><%= tag.title %></td>
       <td><%= tag.slug %></td>
-
       <td>
         <span><%= link "Show", to: Routes.admin_tag_path(@conn, :show, tag) %></span>
         <span><%= link "Edit", to: Routes.admin_tag_path(@conn, :edit, tag) %></span>
         <span><%= link "Delete", to: Routes.admin_tag_path(@conn, :delete, tag), method: :delete, data: [confirm: "Are you sure?"] %></span>
       </td>
     </tr>
-<% end %>
+  <% end %>
   </tbody>
 </table>
+<% end %>
 
-<span><%= link "New Tag", to: Routes.admin_tag_path(@conn, :new) %></span>
+<%= link "New Tag", to: Routes.admin_tag_path(@conn, :new), class: "btn btn--primary" %>

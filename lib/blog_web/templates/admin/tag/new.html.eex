@@ -1,5 +1,3 @@
-<h1>New Tag</h1>
+<h1>Tags > New</h1>
 
 <%= render "form.html", Map.put(assigns, :action, Routes.admin_tag_path(@conn, :create)) %>
-
-<span><%= link "Back", to: Routes.admin_tag_path(@conn, :index) %></span>

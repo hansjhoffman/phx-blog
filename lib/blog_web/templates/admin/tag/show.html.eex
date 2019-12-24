@@ -1,18 +1,10 @@
-<h1>Show Tag</h1>
+<h1>Tags > Detail</h1>
 
-<ul>
+<strong>Title:</strong>
+<%= @tag.title %>
 
-  <li>
-    <strong>Title:</strong>
-    <%= @tag.title %>
-  </li>
-
-  <li>
-    <strong>Slug:</strong>
-    <%= @tag.slug %>
-  </li>
-
-</ul>
+<strong>Slug:</strong>
+<%= @tag.slug %>
 
 <span><%= link "Edit", to: Routes.admin_tag_path(@conn, :edit, @tag) %></span>
 <span><%= link "Back", to: Routes.admin_tag_path(@conn, :index) %></span>

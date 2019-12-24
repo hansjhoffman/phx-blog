@@ -19,18 +19,31 @@ defmodule Blog.CMS do
 
   """
   def list_posts do
-    Post
-    |> Repo.all()
-    |> Repo.preload(:user)
-    |> Repo.preload(:tags)
+    query =
+      from p in Post,
+        preload: [:user, :tags],
+        order_by: [desc: :inserted_at]
+
+    Repo.all(query)
   end
 
   def get_posts_by_tag_slug(slug) do
-    Repo.all(
+    query =
       from p in Post,
         join: t in assoc(p, :tags),
-        where: t.slug == ^slug
-    )
+        where: t.slug == ^slug,
+        order_by: [asc: :inserted_at]
+
+    Repo.all(query)
+  end
+
+  def get_most_viewed_posts(limit) do
+    query = 
+      from p in Post,
+        order_by: [desc: :views],
+        limit: ^limit
+
+    Repo.all(query)
   end
 
   # All featured posts, all with given status

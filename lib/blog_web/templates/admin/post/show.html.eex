@@ -1,28 +1,16 @@
 <h1>Show Post</h1>
 
-<ul>
+<strong>Title:</strong>
+<%= @post.title %>
 
-  <li>
-    <strong>Title:</strong>
-    <%= @post.title %>
-  </li>
+<strong>Content:</strong>
+<%= @post.content %>
 
-  <li>
-    <strong>Content:</strong>
-    <%= @post.content %>
-  </li>
+<strong>Slug:</strong>
+<%= @post.slug %>
 
-  <li>
-    <strong>Slug:</strong>
-    <%= @post.slug %>
-  </li>
-
-  <li>
-    <strong>Excerpt:</strong>
-    <%= @post.excerpt %>
-  </li>
-
-</ul>
+<strong>Excerpt:</strong>
+<%= @post.excerpt %>
 
 <span><%= link "Edit", to: Routes.admin_post_path(@conn, :edit, @post) %></span>
 <span><%= link "Back", to: Routes.admin_post_path(@conn, :index) %></span>

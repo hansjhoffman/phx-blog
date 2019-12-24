@@ -4,6 +4,7 @@ defmodule BlogWeb.SitemapView do
   def format_timestamp(date) do
     date
     |> Timex.format!("%FT%T%:z", :strftime)
+
     # |> Timex.format("{ISO:Extended}")
   end
 end

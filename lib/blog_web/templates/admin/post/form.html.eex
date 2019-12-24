@@ -5,19 +5,26 @@
     </div>
   <% end %>
 
-  <%= label f, :title %>
-  <%= text_input f, :title %>
-  <%= error_tag f, :title %>
+  <div class="form-group">
+    <%= label f, :title %>
+    <%= text_input f, :title, class: "form-control", placeholder: "Elixir rocks!"%>
+    <%= error_tag f, :title %>
+  </div>
 
-  <%= label f, :content %>
-  <%= textarea f, :content %>
-  <%= error_tag f, :content %>
+  <div class="form-group">
+    <%= label f, :content %>
+    <%= textarea f, :content, class: "form-control", rows: "10" %>
+    <%= error_tag f, :content %>
+  </div>
 
-  <%= label f, :excerpt %>
-  <%= textarea f, :excerpt %>
-  <%= error_tag f, :excerpt %>
+  <div class="form-group">
+    <%= label f, :excerpt %>
+    <%= textarea f, :excerpt, class: "form-control", rows: "4" %>
+    <%= error_tag f, :excerpt %>
+  </div>
 
-  <div>
-    <%= submit "Save" %>
+  <div class="form-actions">
+    <%= submit "Save", class: "btn btn--primary" %>
+    <%= link "Cancel", to: Routes.admin_post_path(@conn, :index), class: "btn" %>
   </div>
 <% end %>

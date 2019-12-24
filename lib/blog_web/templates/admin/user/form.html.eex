@@ -5,15 +5,20 @@
     </div>
   <% end %>
 
-  <%= label f, :handle %>
-  <%= text_input f, :handle %>
-  <%= error_tag f, :handle %>
+  <div class="form-group">
+    <%= label f, :handle %>
+    <%= text_input f, :handle, class: "form-control" %>
+    <%= error_tag f, :handle %>
+  </div>
 
-  <%= label f, :password %>
-  <%= password_input f, :password %>
-  <%= error_tag f, :password %>
+  <div class="form-group">
+    <%= label f, :password %>
+    <%= password_input f, :password, class: "form-control" %>
+    <%= error_tag f, :password %>
+  </div>
 
-  <div>
-    <%= submit "Save" %>
+  <div class="form-actions">
+    <%= submit "Save", class: "btn btn--primary" %>
+    <%= link "Cancel", to: Routes.admin_user_path(@conn, :index), class: "btn btn--secondary" %>
   </div>
 <% end %>

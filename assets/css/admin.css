@@ -1,3 +1,282 @@
-/* This file is for your main application css. */
-
 @import "./normalize.css";
+
+:root {
+  --primary: #5867dd;
+  --secondary: #1e1e2c;
+  --tertiary: #4c4e6f;
+  --bg: #f7f8fa;
+  --dark: #343a40;
+  --light: #a2a3b7;
+  --white: #ffffff;
+  --blue: #007bff;
+  --info: #5578eb;
+  --success: #0abb87;
+  --warning: #ffb822;
+  --danger: #fd397a;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1400px;
+  --border-radius: 3px;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Poppins", "Roboto", "Helvetica", "sans-seriff";
+  -webkit-font-smoothing: antialiased;
+  color: var(--dark);
+}
+
+body {
+  box-sizing: border-box;
+  background-color: var(--bg);
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+
+body section {
+  padding: 2em;
+}
+
+/***********************
+ *     Side navbar
+ ***********************/
+nav {
+  height: 100vh;
+  background-color: var(--secondary);
+  overflow-y: scroll;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  padding-left: 2em;
+}
+
+nav ul li:hover {
+  background-color: #1b1b27;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 1em 0;
+  color: var(--light);
+  display: block;
+  width: 100%;
+}
+
+nav a:hover {
+  color: var(--white);
+}
+
+nav a:hover svg {
+  color: var(--blue);
+}
+
+nav ul li a svg {
+  color: var(--tertiary);
+  vertical-align: middle;
+  padding-right: .5em;
+}
+
+nav h6 {
+  color: var(--tertiary);
+  font-size: 1rem;
+  padding-left: 2em;
+}
+
+/**********************
+ *       Header
+ **********************/
+.topbar {
+  background-color: var(--white);
+  padding: 0 2em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 65px;
+  border-bottom: 1px solid #eff0f6;
+}
+
+/**********************
+ *      Tables
+ **********************/
+table {
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  background-color: var(--white);
+  padding: 2em;
+  width: 100%;
+  box-shadow: 0 0 13px 0 rgba(82, 63, 105, .05);
+  margin-bottom: 2rem;
+}
+
+thead, tr {
+  border-bottom: 1px solid #eff0f6;
+}
+
+th, td {
+  padding: 1.5em;
+}
+
+th {
+  text-align: left;
+  min-width: 120px;
+}
+
+/**********************
+ *       Forms
+ **********************/
+.form-group {
+  margin-bottom: 2rem;
+}
+
+.form-group label {
+  font-size: 1rem;
+  font-weight: 400;
+  display: inline-block;
+  margin-bottom: .5rem;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  color: #495057;
+  border: 1px solid #e2e5ec;
+  border-radius: var(--border-radius);
+  padding: .65rem 1rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  transition: border-color .15s ease-in-out,
+              box-shadow .15s ease-in-out,
+              -webkit-box-shadow .15s ease-in-out;
+}
+
+.form-control:focus {
+  outline: 0;
+  border-color: #9aabff;
+}
+
+.form-actions {
+  display: flex;
+}
+
+.form-actions > button:not(:last-child) {
+  margin-right: 1rem;
+}
+
+/**********************
+ *      Buttons
+ **********************/
+.btn {
+  font-weight: 400;
+  color: #212529;
+  padding: 1em;
+  border-radius: var(--border-radius);
+  transition: color .15s ease-in-out,
+              background-color .15s ease-in-out,
+              border-color .15s ease-in-out,
+              box-shadow .15s ease-in-out,
+              -webkit-box-shadow .15s ease-in-out;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn--primary {
+  background-color: #5867dd;
+  border-color: #5867dd;
+  color: var(--white);
+}
+
+.btn--primary:hover {
+  background-color: #384ad7;
+  border-color: #2e40d4;
+}
+
+.btn--secondary {
+  background-color: var(--white);
+  border: 1px solid #e2e5ec;
+  color: #595d6e;
+}
+
+.btn--secondary:hover {
+  border-color: #e2e5ec;
+  background-color: #f4f5f8;
+}
+
+.btn__label {
+  cursor: text !important;
+  font-weight: 600;
+}
+
+.btn__label--danger {
+  background-color: rgba(253, 57, 122, .1);
+  color: #fd397a;
+}
+
+.btn__label--info {
+  background-color: rgba(44, 119, 244, .1);
+  color: #2c77f4;
+}
+
+.btn__label--success {
+  background-color: rgba(29, 201, 183, .1);
+  color: #1dc9b7;
+}
+
+.btn__label--warning {
+  background-color: rgba(255, 184, 34, .1);
+  color: #ffb822;
+}
+
+/**********************
+ *       Alerts
+ **********************/
+.alert {
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  padding: 1.2rem 2rem;
+  color: var(--white);
+}
+
+.alert-info{
+  background-color: var(--info);
+}
+
+.alert-danger{
+  background-color: var(--danger);
+}
+
+.alert-warning{
+  background-color: var(--warning);
+  color: var(--dark);
+}
+
+.alert-success{
+  background-color: var(--success);
+}
+
+/*
+ * ODDS
+ */
+.logo {
+  width: 50px;
+  height: 60px;
+}
