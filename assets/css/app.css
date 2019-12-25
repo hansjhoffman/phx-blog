@@ -1,3 +1,34 @@
-/* This file is for your main application css. */
-
 @import "./normalize.css";
+
+:root {
+  --primary: #fff;
+  --secondary: #fff;
+  --bg: #f7f8fa;
+  --dark: #343a40;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1400px;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Poppins", "Roboto", "Helvetica", "sans-seriff";
+  -webkit-font-smoothing: antialiased;
+  color: var(--dark);
+}
+
+body {
+  box-sizing: border-box;
+  background-color: var(--bg);
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}

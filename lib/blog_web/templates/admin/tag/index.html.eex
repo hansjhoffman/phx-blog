@@ -25,4 +25,4 @@
 </table>
 <% end %>
 
-<%= link "New Tag", to: Routes.admin_tag_path(@conn, :new), class: "btn btn--primary" %>
+<%= link "New Tag", to: Routes.admin_tag_path(@conn, :new), class: "ds-btn ds-btn--primary" %>

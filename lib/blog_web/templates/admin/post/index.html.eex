@@ -18,7 +18,7 @@
       <td><%= post.slug %></td>
       <td><%= format_date(post.inserted_at) %></td>
       <td>
-        <span class="btn btn__label btn__label--success">Published</span>
+        <span class="ds-btn ds-btn__label ds-btn__label--success">Published</span>
       </td>
       <td>
         <span><%= link "Show", to: Routes.admin_post_path(@conn, :show, post) %></span>
@@ -31,4 +31,4 @@
 </table>
 <% end %>
 
-<%= link "New Post", to: Routes.admin_post_path(@conn, :new), class: "btn btn--primary" %>
+<%= link "New Post", to: Routes.admin_post_path(@conn, :new), class: "ds-btn ds-btn--primary" %>

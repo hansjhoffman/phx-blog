@@ -32,6 +32,8 @@ html {
   font-size: 62.5%;
   font-family: "Poppins", "Roboto", "Helvetica", "sans-seriff";
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   color: var(--dark);
 }
 
@@ -49,27 +51,27 @@ body section {
 /***********************
  *     Side navbar
  ***********************/
-nav {
+.ds-primary-nav {
   height: 100vh;
   background-color: var(--secondary);
   overflow-y: scroll;
 }
 
-nav ul {
+.ds-primary-nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-nav ul li {
+.ds-primary-nav ul li {
   padding-left: 2em;
 }
 
-nav ul li:hover {
+.ds-primary-nav ul li:hover {
   background-color: #1b1b27;
 }
 
-nav a {
+.ds-primary-nav__link {
   text-decoration: none;
   font-size: 1.2rem;
   padding: 1em 0;
@@ -78,30 +80,31 @@ nav a {
   width: 100%;
 }
 
-nav a:hover {
+.ds-primary-nav__link:hover {
   color: var(--white);
 }
 
-nav a:hover svg {
+.ds-primary-nav__link:hover svg {
   color: var(--blue);
 }
 
-nav ul li a svg {
+.ds-primary-nav__icon {
   color: var(--tertiary);
   vertical-align: middle;
-  padding-right: .5em;
+  padding-right: 0.5em;
+  height: 24px;
+  width: 24px;
 }
 
-nav h6 {
+.ds-primary-nav__label {
   color: var(--tertiary);
-  font-size: 1rem;
   padding-left: 2em;
 }
 
 /**********************
  *       Header
  **********************/
-.topbar {
+.ds-topbar {
   background-color: var(--white);
   padding: 0 2em;
   display: flex;
@@ -121,15 +124,17 @@ table {
   background-color: var(--white);
   padding: 2em;
   width: 100%;
-  box-shadow: 0 0 13px 0 rgba(82, 63, 105, .05);
+  box-shadow: 0 0 13px 0 rgba(82, 63, 105, 0.05);
   margin-bottom: 2rem;
 }
 
-thead, tr {
+thead,
+tr {
   border-bottom: 1px solid #eff0f6;
 }
 
-th, td {
+th,
+td {
   padding: 1.5em;
 }
 
@@ -141,114 +146,111 @@ th {
 /**********************
  *       Forms
  **********************/
-.form-group {
+.ds-form-group {
   margin-bottom: 2rem;
 }
 
-.form-group label {
+.ds-form-group label {
   font-size: 1rem;
   font-weight: 400;
   display: inline-block;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
-.form-control {
+.ds-form-control {
   display: block;
   width: 100%;
   color: #495057;
   border: 1px solid #e2e5ec;
   border-radius: var(--border-radius);
-  padding: .65rem 1rem;
+  padding: 0.65rem 1rem;
   font-size: 1.2rem;
   font-weight: 400;
   line-height: 1.5;
-  transition: border-color .15s ease-in-out,
-              box-shadow .15s ease-in-out,
-              -webkit-box-shadow .15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
+    -webkit-box-shadow 0.15s ease-in-out;
 }
 
-.form-control:focus {
+.ds-form-control:focus {
   outline: 0;
   border-color: #9aabff;
 }
 
-.form-actions {
+.ds-form-actions {
   display: flex;
 }
 
-.form-actions > button:not(:last-child) {
+.ds-form-actions > button:not(:last-child) {
   margin-right: 1rem;
 }
 
 /**********************
  *      Buttons
  **********************/
-.btn {
+.ds-btn {
   font-weight: 400;
   color: #212529;
   padding: 1em;
   border-radius: var(--border-radius);
-  transition: color .15s ease-in-out,
-              background-color .15s ease-in-out,
-              border-color .15s ease-in-out,
-              box-shadow .15s ease-in-out,
-              -webkit-box-shadow .15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
+    -webkit-box-shadow 0.15s ease-in-out;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
 }
 
-.btn--primary {
+.ds-btn--primary {
   background-color: #5867dd;
   border-color: #5867dd;
   color: var(--white);
 }
 
-.btn--primary:hover {
+.ds-btn--primary:hover {
   background-color: #384ad7;
   border-color: #2e40d4;
 }
 
-.btn--secondary {
+.ds-btn--secondary {
   background-color: var(--white);
   border: 1px solid #e2e5ec;
   color: #595d6e;
 }
 
-.btn--secondary:hover {
+.ds-btn--secondary:hover {
   border-color: #e2e5ec;
   background-color: #f4f5f8;
 }
 
-.btn__label {
+.ds-btn__label {
   cursor: text !important;
   font-weight: 600;
 }
 
-.btn__label--danger {
-  background-color: rgba(253, 57, 122, .1);
+.ds-btn__label--danger {
+  background-color: rgba(253, 57, 122, 0.1);
   color: #fd397a;
 }
 
-.btn__label--info {
-  background-color: rgba(44, 119, 244, .1);
+.ds-btn__label--info {
+  background-color: rgba(44, 119, 244, 0.1);
   color: #2c77f4;
 }
 
-.btn__label--success {
-  background-color: rgba(29, 201, 183, .1);
+.ds-btn__label--success {
+  background-color: rgba(29, 201, 183, 0.1);
   color: #1dc9b7;
 }
 
-.btn__label--warning {
-  background-color: rgba(255, 184, 34, .1);
+.ds-btn__label--warning {
+  background-color: rgba(255, 184, 34, 0.1);
   color: #ffb822;
 }
 
 /**********************
  *       Alerts
  **********************/
-.alert {
+.ds-alert {
   border-radius: var(--border-radius);
   margin-bottom: 1rem;
   border: 1px solid transparent;
@@ -256,27 +258,34 @@ th {
   color: var(--white);
 }
 
-.alert-info{
+.ds-alert--info {
   background-color: var(--info);
 }
 
-.alert-danger{
+.ds-alert--danger {
   background-color: var(--danger);
 }
 
-.alert-warning{
+.ds-alert--warning {
   background-color: var(--warning);
   color: var(--dark);
 }
 
-.alert-success{
+.ds-alert--success {
   background-color: var(--success);
 }
 
 /*
- * ODDS
+ * Logo
  */
-.logo {
+.ds-logo__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5rem 0;
+}
+
+.ds-logo {
   width: 50px;
-  height: 60px;
+  height: 50px;
 }

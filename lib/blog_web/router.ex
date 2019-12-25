@@ -45,6 +45,7 @@ defmodule BlogWeb.Router do
     get "/", DashboardController, :index
 
     resources "/posts", PostController, param: "titled_slug"
+    get "/settings", SettingsController, :index
     resources "/tags", TagController, param: "slug"
     resources "/users", UserController
   end

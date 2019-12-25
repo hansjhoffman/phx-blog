@@ -3,7 +3,9 @@
   "license": "MIT",
   "scripts": {
     "deploy": "webpack --mode production",
-    "format": "prettier --write 'js/*.{js}'",
+    "format": "npm run format-code && npm run format-styles",
+    "format-code": "prettier --write 'js/*.js'",
+    "format-styles": "prettier --write 'css/*.css'",
     "watch": "webpack --mode development --watch"
   },
   "dependencies": {

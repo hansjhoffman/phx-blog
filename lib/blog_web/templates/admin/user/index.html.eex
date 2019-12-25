@@ -23,4 +23,4 @@
   </tbody>
 </table>
 
-<%= link "New User", to: Routes.admin_user_path(@conn, :new), class: "btn btn--primary" %>
+<%= link "New User", to: Routes.admin_user_path(@conn, :new), class: "ds-btn ds-btn--primary" %>
