@@ -13,6 +13,7 @@ defmodule Blog.CMS.Post do
     field :content, :string
     field :excerpt, :string
     field :slug, :string
+    field :status, :string
     field :title, :string
     field :views, :integer
 
@@ -25,8 +26,9 @@ defmodule Blog.CMS.Post do
   @doc false
   def changeset(post, attrs) do
     post
-    |> cast(attrs, [:content, :excerpt, :title])
-    |> validate_required([:content, :excerpt, :title])
+    |> cast(attrs, [:content, :excerpt, :status, :title])
+    |> validate_required([:content, :excerpt, :status, :title])
+    |> validate_inclusion(:status, ["ARCHIVED", "DRAFT", "PUBLISHED"])
   end
 
   @doc false
@@ -41,7 +43,7 @@ defmodule Blog.CMS.Post do
 
   defp generate_slug(changeset) do
     case fetch_change(changeset, :title) do
-      {:ok, title} -> put_change(changeset, :slug, StringGenerator.unique_string_of_length(10))
+      {:ok, _title} -> put_change(changeset, :slug, StringGenerator.unique_string_of_length(10))
       :error -> changeset
     end
   end

@@ -7,7 +7,7 @@ defmodule BlogWeb.Admin.PostController do
   defp get_post(titled_slug) do
     [slug | _] = titled_slug |> String.split("-")
 
-    CMS.get_by!(Post, slug: slug)
+    CMS.get_post_by!(slug: slug)
   end
 
   def create(conn, %{"post" => post_params}) do
@@ -41,7 +41,7 @@ defmodule BlogWeb.Admin.PostController do
   end
 
   def index(conn, _params) do
-    posts = CMS.list_posts()
+    posts = CMS.all_posts()
 
     render(conn, "index.html", posts: posts)
   end

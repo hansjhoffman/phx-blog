@@ -32,16 +32,16 @@ defmodule Blog.CMSTest do
       |> Repo.preload(:tags)
     end
 
-    test "list_posts/0 returns all posts" do
+    test "all_posts/0 returns all posts" do
       post = post_fixture()
 
-      assert CMS.list_posts() == [post]
+      assert CMS.all_posts() == [post]
     end
 
     test "get_post!/1 returns the post with given id" do
       post = post_fixture()
 
-      assert CMS.get_by!(Post, id: post.id) == post
+      assert CMS.get_post_by!(id: post.id) == post
     end
 
     test "create_post/1 with valid data creates a post" do
@@ -69,14 +69,14 @@ defmodule Blog.CMSTest do
       post = post_fixture()
 
       assert {:error, %Ecto.Changeset{}} = CMS.update_post(post, @invalid_attrs)
-      assert post == CMS.get_by!(Post, id: post.id)
+      assert post == CMS.get_post_by!(id: post.id)
     end
 
     test "delete_post/1 deletes the post" do
       post = post_fixture()
 
       assert {:ok, %Post{}} = CMS.delete_post(post)
-      assert_raise Ecto.NoResultsError, fn -> CMS.get_by!(Post, id: post.id) end
+      assert_raise Ecto.NoResultsError, fn -> CMS.get_post_by!(id: post.id) end
     end
 
     test "change_post/1 returns a post changeset" do
@@ -111,7 +111,7 @@ defmodule Blog.CMSTest do
     test "get_tag!/1 returns the tag with given id" do
       tag = tag_fixture()
 
-      assert CMS.get_by!(Tag, id: tag.id) == tag
+      assert CMS.get_tag_by!(id: tag.id) == tag
     end
 
     test "create_tag/1 with valid data creates a tag" do
@@ -135,14 +135,14 @@ defmodule Blog.CMSTest do
       tag = tag_fixture()
 
       assert {:error, %Ecto.Changeset{}} = CMS.update_tag(tag, @invalid_attrs)
-      assert tag == CMS.get_by!(Tag, id: tag.id)
+      assert tag == CMS.get_tag_by!(id: tag.id)
     end
 
     test "delete_tag/1 deletes the tag" do
       tag = tag_fixture()
 
       assert {:ok, %Tag{}} = CMS.delete_tag(tag)
-      assert_raise Ecto.NoResultsError, fn -> CMS.get_by!(Tag, id: tag.id) end
+      assert_raise Ecto.NoResultsError, fn -> CMS.get_tag_by!(id: tag.id) end
     end
 
     test "change_tag/1 returns a tag changeset" do

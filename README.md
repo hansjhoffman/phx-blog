@@ -12,10 +12,11 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
 ## TODO
-- Post status
 - Testing
-- App css
 - Liveview markdown editor
+- Admin panel nav is-active
+- App css
+- Admin form validation css. Use LiveViews for validation?
 - Set Timezone data in ecto
 - Finish sitemap setup
 - Add Post type for text,image,video?

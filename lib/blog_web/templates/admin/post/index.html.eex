@@ -6,7 +6,7 @@
     <tr>
       <th>Title</th>
       <th>Slug</th>
-      <th>Created</th>
+      <th>Last Update</th>
       <th>Status</th>
       <th>Actions</th>
     </tr>
@@ -16,9 +16,9 @@
     <tr>
       <td><%= post.title %></td>
       <td><%= post.slug %></td>
-      <td><%= format_date(post.inserted_at) %></td>
+      <td><%= format_date(post.updated_at) %></td>
       <td>
-        <span class="ds-btn ds-btn__label ds-btn__label--success">Published</span>
+        <span class="ds-btn ds-btn__label <%= post_label_class(post.status) %>"><%= post.status %></span>
       </td>
       <td>
         <span><%= link "Show", to: Routes.admin_post_path(@conn, :show, post) %></span>

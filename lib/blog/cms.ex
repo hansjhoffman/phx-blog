@@ -14,14 +14,24 @@ defmodule Blog.CMS do
 
   ## Examples
 
-      iex> list_posts()
+      iex> all_posts()
       [%Post{}, ...]
 
   """
-  def list_posts do
+  def all_posts do
     query =
       from p in Post,
         preload: [:user, :tags],
+        order_by: [desc: :inserted_at]
+
+    Repo.all(query)
+  end
+
+  def all_published_posts do
+    query =
+      from p in Post,
+        preload: [:user, :tags],
+        where: p.status == "PUBLISHED",
         order_by: [desc: :inserted_at]
 
     Repo.all(query)
@@ -37,7 +47,7 @@ defmodule Blog.CMS do
     Repo.all(query)
   end
 
-  def get_most_viewed_posts(limit) do
+  def most_viewed_posts(limit \\ 5) do
     query =
       from p in Post,
         order_by: [desc: :views],
@@ -46,11 +56,6 @@ defmodule Blog.CMS do
     Repo.all(query)
   end
 
-  # All featured posts, all with given status
-  # def get_all_by() do
-  #
-  # end
-
   @doc """
   Gets a single post by: id, title or slug.
 
@@ -58,14 +63,14 @@ defmodule Blog.CMS do
 
   ## Examples
 
-      iex> get_by!(Post, slug: "61e2f0db67")
+      iex> get_post_by!(slug: "61e2f0db67")
       %Post{}
 
-      iex> get_by!(Post, id: 42)
+      iex> get_post_by!(id: 42)
       ** (Ecto.NoResultsError)
 
   """
-  def get_by!(Post, params) do
+  def get_post_by!(params) do
     Post
     |> Repo.get_by!(params)
     |> Repo.preload(:user)
@@ -169,14 +174,14 @@ defmodule Blog.CMS do
 
   ## Examples
 
-      iex> get_by!(Tag, slug: "elm")
+      iex> get_tag_by!(slug: "elm")
       %Tag{}
 
-      iex> get_by!(Tag, id: 42)
+      iex> get_tag_by!(id: 42)
       ** (Ecto.NoResultsError)
 
   """
-  def get_by!(Tag, params) do
+  def get_tag_by!(params) do
     Tag
     |> Repo.get_by!(params)
   end

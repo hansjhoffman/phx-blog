@@ -3,7 +3,7 @@ defmodule BlogWeb.SitemapController do
   alias Blog.CMS
 
   def index(conn, _params) do
-    posts = CMS.list_posts()
+    posts = CMS.all_published_posts()
 
     conn
     |> render("index.xml", posts: posts)

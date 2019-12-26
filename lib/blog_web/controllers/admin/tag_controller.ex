@@ -29,20 +29,20 @@ defmodule BlogWeb.Admin.TagController do
   end
 
   def show(conn, %{"slug" => slug}) do
-    tag = CMS.get_by!(Tag, slug: slug)
+    tag = CMS.get_tag_by!(slug: slug)
 
     render(conn, "show.html", tag: tag)
   end
 
   def edit(conn, %{"slug" => slug}) do
-    tag = CMS.get_by!(Tag, slug: slug)
+    tag = CMS.get_tag_by!(slug: slug)
     changeset = CMS.change_tag(tag)
 
     render(conn, "edit.html", tag: tag, changeset: changeset)
   end
 
   def update(conn, %{"slug" => slug, "tag" => tag_params}) do
-    tag = CMS.get_by!(Tag, slug: slug)
+    tag = CMS.get_tag_by!(slug: slug)
 
     case CMS.update_tag(tag, tag_params) do
       {:ok, tag} ->
@@ -56,7 +56,7 @@ defmodule BlogWeb.Admin.TagController do
   end
 
   def delete(conn, %{"slug" => slug}) do
-    tag = CMS.get_by!(Tag, slug: slug)
+    tag = CMS.get_tag_by!(slug: slug)
     {:ok, _tag} = CMS.delete_tag(tag)
 
     conn
