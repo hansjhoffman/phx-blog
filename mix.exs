@@ -54,6 +54,7 @@ defmodule Blog.MixProject do
       {:pbkdf2_elixir, "~> 1.0"},
       {:timex, "~> 3.6"},
       {:excoveralls, "~> 0.12.1", only: :test},
+      {:ex_machina, "~> 2.3", only: :test},
       {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false}
     ]
   end

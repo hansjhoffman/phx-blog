@@ -6,6 +6,7 @@ defmodule BlogWeb.SitemapController do
     posts = CMS.all_published_posts()
 
     conn
+    |> put_resp_content_type("text/xml")
     |> render("index.xml", posts: posts)
   end
 end

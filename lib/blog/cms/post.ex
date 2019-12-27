@@ -43,7 +43,7 @@ defmodule Blog.CMS.Post do
 
   defp generate_slug(changeset) do
     case fetch_change(changeset, :title) do
-      {:ok, _title} -> put_change(changeset, :slug, StringGenerator.unique_string_of_length(10))
+      {:ok, _title} -> put_change(changeset, :slug, StringGenerator.unique_string(10))
       :error -> changeset
     end
   end

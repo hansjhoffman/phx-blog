@@ -1,15 +1,28 @@
 defmodule BlogWeb.BlogControllerTest do
   use BlogWeb.ConnCase
+  import Blog.Factory
+
+  alias Blog.CMS
+  alias BlogWeb.Helpers.SharedHelpers
 
   test "GET /blog", %{conn: conn} do
-    conn = get(conn, "/blog")
+    posts = insert_pair(:post, status: "PUBLISHED")
 
-    assert html_response(conn, 200) =~ "Sign in"
+    conn = get(conn, Routes.blog_path(conn, :index))
+
+    for post <- posts do
+      assert html_response(conn, 200) =~ post.title
+    end
   end
 
-  test "GET /blog/:slug", %{conn: conn} do
-    conn = get(conn, "/blog/27sj4933-first-post")
+  test "GET /blog/:titled_slug", %{conn: conn} do
+    post = insert(:post)
+    titled_slug = "#{post.slug}-#{SharedHelpers.slugify(post.title)}"
 
-    assert html_response(conn, 200) =~ "Sign in"
+    conn = get(conn, Routes.post_path(conn, :show, titled_slug))
+
+    assert html_response(conn, 200) =~ post.title
+    assert html_response(conn, 200) =~ post.content
+    assert CMS.get_post_by!(id: post.id).views == 1
   end
 end
