@@ -1,15 +1,19 @@
-<h1>Sign in</h1>
+<section>
+  <h1>Sign in to Admin</h1>
 
-<%= form_for @conn, Routes.sign_in_path(@conn, :create), [as: :session], fn f -> %>
-  <div class="form-group">
-    <%= text_input f, :handle, placeholder: "Username", autocomplete: "username" %>
-  </div>
+  <%= form_for @conn, Routes.sign_in_path(@conn, :create), [as: :session], fn f -> %>
+    <div class="form-group">
+      <%= label f, :handle %>
+      <%= text_input f, :handle, placeholder: "Username", autocomplete: "username", class: "ds-form-control" %>
+    </div>
 
-  <div class="form-group">
-    <%= password_input f, :password, placeholder: "Password", autocomplete: "current-password" %>
-  </div>
+    <div class="form-group">
+      <%= label f, :password %>
+      <%= password_input f, :password, placeholder: "Password", autocomplete: "current-password", class: "ds-form-control" %>
+    </div>
 
-  <div class="form-group">
-    <%= submit "Login" %>
-  </div>
-<% end %>
+    <div class="form-group-actions">
+      <%= submit "Login", class: "ds-btn ds-btn--primary" %>
+    </div>
+  <% end %>
+</section>

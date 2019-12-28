@@ -1,25 +1,14 @@
-<h1>Post Details</h1>
+<section class="ds-markdown">
+  <h1 class="ds-heading-2"><%= @post.title %></h1>
+  <p class="ds-caption"><%= format_date(@post.updated_at) %> &middot; <%= read_time(@post.content) %></p>
 
-<h3>Title:</h3>
-<%= @post.title %>
+  <p class="ds-body-1"><%= as_html(@post.content) %></p>
 
-<h5>Date:</h5>
-<%= Timex.format!(@post.updated_at, "%m/%d/%Y", :strftime) %>
+  <%= render "_tags.html", conn: @conn, tags: @post.tags %>
 
-<h5>Read length:</h5>
-<p>5 min</p>
-
-<h5>Excerpt:</h5>
-<%= @post.excerpt %>
-
-<h5>Content:</h5>
-<%= @post.content %>
-
-<h5>Tags:</h5>
-<%= for tag <- @post.tags do %>
-  <%= link "##{tag.title}", to: Routes.tag_path(@conn, :index, tag) %>
-<% end %>
+  <hr />
 
 <%= if @current_user do %>
   <%= link "Edit", to: Routes.admin_post_path(@conn, :edit, @post)%>
 <% end %>
+</section>

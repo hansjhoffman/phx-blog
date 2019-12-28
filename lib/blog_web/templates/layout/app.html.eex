@@ -1,28 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="theme-color" content="#502e71">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#502e71" />
     <meta property="og:url" content="https://www.hansjhoffman.dev" />
     <meta property="og:title" content="" />
     <meta property="og:description" content="" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" />
+    <meta property="og:image" content="<%= Routes.static_path(@conn, "/images/logo.png") %>" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="640" />
     <meta name="twitter:site" content="https://www.hansjhoffman.dev" />
     <meta name="twitter:card" content="" />
-    <meta name="twitter:image" content="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" />
+    <meta name="twitter:image" content="<%= Routes.static_path(@conn, "/images/logo.png") %>" />
 
     <title>Blog · Phoenix Framework</title>
-    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
-    <link rel="alternate" type="application/rss+xml" href="/rss.xml">
-    <link rel="manifest" href="<%= Routes.static_path(@conn, "/manifest.json") %>">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700" />
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>" />
+    <link rel="alternate" type="application/rss+xml" href="/rss.xml" />
+    <link rel="manifest" href="<%= Routes.static_path(@conn, "/manifest.json") %>" />
   </head>
+  
   <body>
-    <main role="main" class="container">
+    <header>
+      <nav class="ds-primary-nav" role="navigation">
+        <div class="ds-primary-nav__background">
+          <svg viewBox="0 0 225 334" xmlns="http://www.w3.org/2000/svg" class="ds-logo">
+            <path d="m213.88 90.04c0-1.536-0.456-2.832-1.368-3.888-0.912-1.104-2.064-2.136-3.456-3.096-1.344-0.96-2.832-1.944-4.464-2.952-1.584-1.008-3.072-2.184-4.464-3.528-1.344-1.344-2.472-2.928-3.384-4.752s-1.368-4.056-1.368-6.696c0-2.448 0.36-4.512 1.08-6.192 0.768-1.728 1.8-3.12 3.096-4.176 1.296-1.104 2.832-1.896 4.608-2.376 1.776-0.528 3.672-0.792 5.688-0.792 2.448 0 4.728 0.24 6.84 0.72s3.864 1.128 5.256 1.944l-2.808 7.992c-0.816-0.576-2.04-1.104-3.672-1.584-1.584-0.48-3.312-0.72-5.184-0.72s-3.312 0.384-4.32 1.152-1.512 1.896-1.512 3.384c0 1.344 0.456 2.544 1.368 3.6 0.912 1.008 2.04 1.992 3.384 2.952 1.392 0.96 2.88 1.968 4.464 3.024 1.632 1.008 3.12 2.208 4.464 3.6 1.392 1.344 2.544 2.952 3.456 4.824 0.912 1.824 1.368 4.008 1.368 6.552s-0.384 4.752-1.152 6.624c-0.72 1.872-1.776 3.432-3.168 4.68-1.344 1.2-2.976 2.112-4.896 2.736s-4.056 0.936-6.408 0.936c-2.976 0-5.592-0.288-7.848-0.864-2.208-0.576-3.912-1.224-5.112-1.944l2.952-8.136c0.96 0.576 2.28 1.152 3.96 1.728s3.48 0.864 5.4 0.864c4.8 0 7.2-1.872 7.2-5.616z" />
+            <path d="m147.33 78.232l-3.312-8.856h-0.36l1.152 8.712v24.912h-8.568v-50.76h6.984l14.472 25.344 3.096 8.712h0.432l-1.152-8.568v-25.128h8.568v50.76h-6.984l-14.328-25.128z" />
+            <path d="M95.616 91.624H83.736L80.784 103H71.784L86.4 52.24H93.528L108.216 103H98.712L95.616 91.624ZM85.68 84.136H94.032L91.152 72.4L90 64.48H89.712L88.488 72.472L85.68 84.136Z" />
+            <path d="M31.064 81.688H17.312V103H8.24V52.6H17.312V73.336H31.064V52.6H40.136V103H31.064V81.688Z" />
+            <path d="m196.24 156.6h25.2v8.352h-16.128v13.104h14.832v8.352h-14.832v20.592h-9.072v-50.4z" />
+            <path d="m140.24 156.6h25.2v8.352h-16.128v13.104h14.832v8.352h-14.832v20.592h-9.072v-50.4z" />
+            <path d="m72.088 182.8c0-8.544 1.464-15.048 4.392-19.512s7.392-6.696 13.392-6.696c3.12 0 5.808 0.624 8.064 1.872 2.256 1.2 4.104 2.952 5.544 5.256 1.44 2.256 2.496 5.016 3.168 8.28 0.72 3.216 1.08 6.816 1.08 10.8 0 8.544-1.512 15.048-4.536 19.512-2.976 4.464-7.416 6.696-13.32 6.696-3.168 0-5.88-0.6-8.136-1.8-2.208-1.248-4.032-3-5.472-5.256-1.44-2.304-2.496-5.064-3.168-8.28-0.672-3.264-1.008-6.888-1.008-10.872zm9.504 0c0 2.544 0.144 4.92 0.432 7.128 0.288 2.16 0.768 4.032 1.44 5.616s1.512 2.832 2.52 3.744c1.056 0.912 2.352 1.368 3.888 1.368 2.784 0 4.872-1.416 6.264-4.248s2.088-7.368 2.088-13.608c0-2.448-0.144-4.752-0.432-6.912-0.288-2.208-0.768-4.104-1.44-5.688-0.624-1.632-1.464-2.904-2.52-3.816-1.056-0.96-2.376-1.44-3.96-1.44-5.52 0-8.28 5.952-8.28 17.856z" />
+            <path d="M31.064 185.688H17.312V207H8.24V156.6H17.312V177.336H31.064V156.6H40.136V207H31.064V185.688Z" />
+            <path d="m198 283.78h26.928v7.344h-26.928v-7.344z" />
+            <path d="m147.33 285.23l-3.312-8.856h-0.36l1.152 8.712v24.912h-8.568v-50.76h6.984l14.472 25.344 3.096 8.712h0.432l-1.152-8.568v-25.128h8.568v50.76h-6.984l-14.328-25.128z" />
+            <path d="m95.616 298.62h-11.88l-2.952 11.376h-9l14.616-50.76h7.128l14.688 50.76h-9.504l-3.096-11.376zm-9.936-7.488h8.352l-2.88-11.736-1.152-7.92h-0.288l-1.224 7.992-2.808 11.664z" />
+            <path d="m35.496 284.01l1.008-9.648h-0.36l-2.664 8.64-8.208 17.712h-3.024l-8.712-17.784-2.664-8.712h-0.432l1.368 9.72v26.064h-8.568v-50.4h8.712l10.512 21.816 1.728 6.264h0.288l1.656-6.408 9.864-21.672h8.568v50.4h-9.072v-25.992z" />
+            <path d="M7 0H223V8H7V0Z" />
+          </svg>
+        </div>
+        <p class="ds-body-1">Hello! I am software engineer currently living in Tampa, FL. I love coding in Elixir + Phoenix, Elm and React.</p>
+        <ul>
+          <li>
+            <%= link "Blog", to: Routes.blog_path(@conn, :index), class: "ds-primary-nav__link ds-heading-5" %>
+          </li>
+          <li>
+            <%= link "Portfolio", to: Routes.portfolio_path(@conn, :index), class: "ds-primary-nav__link ds-heading-5" %>
+          </li>
+          <li>
+            <%= link "Courses", to: Routes.course_path(@conn, :index), class: "ds-primary-nav__link ds-heading-5" %>
+          </li>
+          <li>
+            <%= link "Resume", to: Routes.resume_path(@conn, :index), class: "ds-primary-nav__link ds-heading-5" %>
+          </li>
+        </ul>
+        <div class="ds-social">
+          <%= link to: "https://github.com/hansjhoffman/", target: "_blank", class: "ds-primary-nav__link ds-heading-5" do %>
+            <img src="<%= Routes.static_path(@conn, "/images/icons/github.svg") %>" class="ds-social__icon"></img>
+          <% end %>
+          <%= link to: "https://www.linkedin.com/in/hansjhoffman/", target: "_blank", class: "ds-primary-nav__link ds-heading-5" do %>
+            <img src="<%= Routes.static_path(@conn, "/images/icons/linkedin.svg") %>" class="ds-social__icon" />
+          <% end %>
+          <%= link to: "https://twitter.com/hansjhoffman", target: "_blank", class: "ds-primary-nav__link ds-heading-5" do %>
+            <img src="<%= Routes.static_path(@conn, "/images/icons/twitter.svg") %>" class="ds-social__icon" />
+          <% end %>
+          <%= link to: "https://instagram.com/hansjhoffman/", target: "_blank", class: "ds-primary-nav__link ds-heading-5" do %>
+            <img src="<%= Routes.static_path(@conn, "/images/icons/instagram.svg") %>" class="ds-social__icon" />
+          <% end %>
+        </div>
+      </nav>
+    </header>
+    <main role="main">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= render @view_module, @view_template, assigns %>

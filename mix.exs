@@ -53,6 +53,7 @@ defmodule Blog.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:pbkdf2_elixir, "~> 1.0"},
       {:timex, "~> 3.6"},
+      {:earmark, "~> 1.4"},
       {:excoveralls, "~> 0.12.1", only: :test},
       {:ex_machina, "~> 2.3", only: :test},
       {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false}

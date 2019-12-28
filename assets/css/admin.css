@@ -88,7 +88,7 @@ body section {
   color: var(--blue);
 }
 
-.ds-primary-nav__icon {
+.ds-social__icon {
   color: var(--tertiary);
   vertical-align: middle;
   padding-right: 0.5em;

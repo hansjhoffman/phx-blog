@@ -25,16 +25,12 @@ defmodule BlogWeb.Router do
     pipe_through [:browser]
 
     get "/", PortfolioController, :index
-
     get "/blog", BlogController, :index
     get "/blog/:titled_slug", BlogController, :show, as: :post
-
     get "/courses", CourseController, :index
-
+    get "/resume", ResumeController, :index
     get "/sitemap.xml", SitemapController, :index
-
     get "/tags/:slug", TagController, :index
-
     resources "/in", SessionController, only: [:new, :create], as: :sign_in
     delete "/out", SessionController, :delete, as: :sign_out
   end
@@ -43,7 +39,6 @@ defmodule BlogWeb.Router do
     pipe_through [:browser, :protected]
 
     get "/", DashboardController, :index
-
     resources "/posts", PostController, param: "titled_slug"
     get "/settings", SettingsController, :index
     resources "/tags", TagController, param: "slug"

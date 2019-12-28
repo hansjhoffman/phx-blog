@@ -3,14 +3,13 @@
 <% end %>
 
 <section>
-  <h1>Blog posts</h1>
+  <h1 class="ds-heading-2">Blog</h1>
 <%= for post <- @posts do %>
-  <article>
-    <%= link post.title, to: Routes.post_path(@conn, :show, post) %>
-    <p><%= post.excerpt %></p>
-  <%= for tag <- post.tags do %>
-    <%= link "##{tag.title}", to: Routes.tag_path(@conn, :index, tag) %>
-  <% end %>
+  <article class="ds-spacer--lg">
+    <p class="ds-caption"><%= format_date(post.inserted_at) %></p>
+    <%= link post.title, to: Routes.post_path(@conn, :show, post), class: "ds-heading-3" %>
+    <p class="ds-subtitle-1"><%= post.excerpt %></p>
+    <%= render "_tags.html", conn: @conn, tags: post.tags %>
   </article>
 <% end %>
 </section>
