@@ -1,0 +1,38 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+
+  @include respond-to("sm") {
+    font-size: 56.25%;
+  }
+
+  @include respond-to("md") {
+    font-size: 50%;
+  }
+
+  @include respond-to("lg") {
+    font-size: 45%;
+  }
+
+  @include respond-to("xl") {
+    font-size: 75%;
+  }
+}
+
+body {
+  box-sizing: border-box;
+  background-color: var(--bg);
+  margin: 0 9.6rem;
+}
+
+::selection {
+  background-color: #efbb35;
+  color: #fff;
+}

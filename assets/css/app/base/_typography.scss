@@ -1,0 +1,91 @@
+body {
+  font-family: "Poppins", "Roboto", "Helvetica", "sans-seriff";
+  text-rendering: optimizeLegibility;
+  line-height: 2;
+  color: var(--text-color);
+}
+
+h1,
+.ds-heading-1 {
+  font-size: 6rem;
+  font-weight: 300;
+  line-height: 1.167;
+  letter-spacing: -0.01562em;
+  /* margin-bottom: 0.35em; */
+}
+
+h2,
+.ds-heading-2 {
+  font-size: 3.75rem;
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.00833em;
+}
+
+h3,
+.ds-heading-3 {
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1.167;
+  letter-spacing: 0em;
+}
+
+h4,
+.ds-heading-4 {
+  font-size: 2.125rem;
+  font-weight: 400;
+  line-height: 1.235;
+  letter-spacing: 0.00735em;
+}
+
+h5,
+.ds-heading-5 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.334;
+  letter-spacing: 0em;
+}
+
+h6,
+.ds-heading-6 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.0075em;
+}
+
+.ds-subtitle-1 {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: 0.00938em;
+}
+
+.ds-subtitle-2 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.57;
+  letter-spacing: 0.00714em;
+}
+
+.ds-body-1 {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+}
+
+.ds-body-2 {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+}
+
+.ds-caption {
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.66;
+  letter-spacing: 0.03333em;
+  color: #808080;
+}

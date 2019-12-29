@@ -1,3 +1,3 @@
-defmodule BlogWeb.ResumeView do
+defmodule BlogWeb.AboutView do
   use BlogWeb, :public_view
 end

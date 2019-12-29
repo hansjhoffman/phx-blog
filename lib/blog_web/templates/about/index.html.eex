@@ -1,0 +1,12 @@
+<section>
+  <div class="ds-heading-1">About</div>
+  <div class="ds-heading-1">Work and Experience</div>
+  <div class="ds-timeline">
+    <ul>
+      <li>Job 1</li>
+      <li>Job 2</li>
+      <li>Job 3</li>
+    </ul>
+  </div>
+</section>
+

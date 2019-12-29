@@ -1,0 +1,13 @@
+body {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-column-gap: 1.6rem;
+}
+
+header {
+  grid-column: 1 / 4;
+}
+
+main {
+  grid-column: 4 / -1;
+}

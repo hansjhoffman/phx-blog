@@ -1,0 +1,361 @@
+@import "./normalize.css";
+
+:root {
+  --primary: hsl(233, 66%, 61%);
+  --secondary: hsl(240, 19%, 15%);
+  --tertiary: hsl(237, 19%, 37%);
+  --bg: hsl(220, 23%, 97%);
+  --dark: hsl(210, 10%, 23%);
+  --light: hsl(237, 13%, 68%);
+  --white: hsl(0, 0%, 100%);
+  --blue: hsl(211, 100%, 50%);
+  --info: hsl(226, 79%, 63%);
+  --success: hsl(162, 90%, 39%);
+  --warning: hsl(41, 100%, 57%);
+  --danger: hsl(340, 98%, 61%);
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1400px;
+  --border-radius: 3px;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Poppins", "Roboto", "Helvetica", "sans-seriff";
+  text-rendering: optimizeLegibility;
+  color: var(--dark);
+}
+
+body {
+  box-sizing: border-box;
+  background-color: var(--bg);
+  display: grid;
+  grid-template-columns: 200px 1fr;
+
+  section {
+    padding: 2em;
+  }
+}
+
+/***********************
+ *     Typography
+ ***********************/
+.ds-heading-1 {
+  font-size: 6rem;
+  font-weight: 300;
+  line-height: 1.167;
+  letter-spacing: -0.01562em;
+  /* margin-bottom: 0.35em; */
+}
+
+.ds-heading-2 {
+  font-size: 3.75rem;
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.00833em;
+}
+
+.ds-heading-3 {
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1.167;
+  letter-spacing: 0em;
+}
+
+.ds-heading-4 {
+  font-size: 2.125rem;
+  font-weight: 400;
+  line-height: 1.235;
+  letter-spacing: 0.00735em;
+}
+
+.ds-heading-5 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.334;
+  letter-spacing: 0em;
+}
+
+.ds-heading-6 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.0075em;
+}
+
+.ds-subtitle-1 {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: 0.00938em;
+}
+
+.ds-subtitle-2 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.57;
+  letter-spacing: 0.00714em;
+}
+
+.ds-body-1 {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+}
+
+.ds-caption {
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.66;
+  letter-spacing: 0.03333em;
+}
+
+/***********************
+ *     Side navbar
+ ***********************/
+.ds-primary-nav {
+  height: 100vh;
+  background-color: var(--secondary);
+  overflow-y: scroll;
+
+  & > ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__link {
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 1em 0;
+    color: var(--light);
+    display: block;
+    width: 100%;
+
+    &:hover {
+      color: var(--white);
+    }
+  }
+
+  &__label {
+    color: var(--tertiary);
+    padding-left: 2em;
+  }
+}
+
+.ds-primary-nav ul li {
+  padding-left: 2em;
+}
+
+.ds-primary-nav ul li:hover {
+  background-color: #1b1b27;
+}
+
+.ds-primary-nav__link:hover svg {
+  color: var(--blue);
+}
+
+.ds-social__icon {
+  color: var(--tertiary);
+  vertical-align: middle;
+  padding-right: 0.5em;
+  height: 24px;
+  width: 24px;
+}
+
+/**********************
+ *       Header
+ **********************/
+.ds-topbar {
+  background-color: var(--white);
+  padding: 0 2em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 65px;
+  border-bottom: 1px solid #eff0f6;
+}
+
+/**********************
+ *      Tables
+ **********************/
+table {
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  background-color: var(--white);
+  padding: 2em;
+  width: 100%;
+  box-shadow: 0 0 13px 0 rgba(82, 63, 105, 0.05);
+  margin-bottom: 2rem;
+}
+
+thead,
+tr {
+  border-bottom: 1px solid #eff0f6;
+}
+
+th,
+td {
+  padding: 1.5em;
+}
+
+th {
+  text-align: left;
+  min-width: 120px;
+}
+
+/**********************
+ *       Forms
+ **********************/
+.ds-form-group {
+  margin-bottom: 2rem;
+
+  & ~ label {
+    font-size: 1rem;
+    font-weight: 400;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.ds-form-control {
+  display: block;
+  width: 100%;
+  color: #495057;
+  border: 1px solid #e2e5ec;
+  border-radius: var(--border-radius);
+  padding: 0.65rem 1rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  &:focus {
+    outline: 0;
+    border-color: #9aabff;
+  }
+}
+
+.ds-form-actions {
+  display: flex;
+
+  & > button:not(:last-child) {
+    margin-right: 1rem;
+  }
+}
+
+/**********************
+ *      Buttons
+ **********************/
+.ds-btn {
+  font-weight: 400;
+  color: #212529;
+  padding: 1em;
+  border-radius: var(--border-radius);
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+
+  &--primary {
+    background-color: #5867dd;
+    border-color: #5867dd;
+    color: var(--white);
+
+    &:hover {
+      background-color: #384ad7;
+      border-color: #2e40d4;
+    }
+  }
+
+  &--secondary {
+    background-color: var(--white);
+    border: 1px solid #e2e5ec;
+    color: #595d6e;
+
+    &:hover {
+      border-color: #e2e5ec;
+      background-color: #f4f5f8;
+    }
+  }
+
+  &__label {
+    cursor: text !important;
+    font-weight: 600;
+
+    &--danger {
+      background-color: rgba(253, 57, 122, 0.1);
+      color: var(--danger);
+    }
+
+    &--info {
+      background-color: rgba(44, 119, 244, 0.1);
+      color: #2c77f4;
+    }
+
+    &--success {
+      background-color: rgba(29, 201, 183, 0.1);
+      color: var(--success);
+    }
+
+    &--warning {
+      background-color: rgba(255, 184, 34, 0.1);
+      color: var(--warning);
+    }
+  }
+}
+
+/**********************
+ *       Alerts
+ **********************/
+.ds-alert {
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  padding: 1.2rem 2rem;
+  color: var(--white);
+
+  &--info {
+    background-color: var(--info);
+  }
+
+  &--danger {
+    background-color: var(--danger);
+  }
+
+  &--warning {
+    background-color: var(--warning);
+    color: var(--dark);
+  }
+
+  &--success {
+    background-color: var(--success);
+  }
+}
+
+/*
+ * Logo
+ */
+.ds-logo__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5rem 0;
+}
+
+.ds-logo {
+  width: 50px;
+  height: 50px;
+}

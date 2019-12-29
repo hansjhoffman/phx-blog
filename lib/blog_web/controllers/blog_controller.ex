@@ -12,7 +12,8 @@ defmodule BlogWeb.BlogController do
   def show(conn, %{"titled_slug" => titled_slug}) do
     [slug | _] = titled_slug |> String.split("-")
 
-    post = CMS.get_post_by!(slug: slug) |> CMS.inc_post_views()
+    # post = CMS.get_post_by!(slug: slug) |> CMS.inc_post_views()
+    post = CMS.get_post_by!(slug: slug)
 
     render(conn, "show.html", post: post)
   end

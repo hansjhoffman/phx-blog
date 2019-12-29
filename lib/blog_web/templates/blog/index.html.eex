@@ -1,13 +1,11 @@
-<%= if @current_user do %>
-  <%= link "New Post", to: Routes.admin_post_path(@conn, :new) %>
-<% end %>
+<button id="theme-toggle" class="theme-toggle" aria-label="theme switcher"></button>
 
-<section>
-  <h1 class="ds-heading-2">Blog</h1>
+<section class="ds-section-posts">
+  <div class="ds-heading-1">Blog</div>
 <%= for post <- @posts do %>
   <article class="ds-spacer--lg">
     <p class="ds-caption"><%= format_date(post.inserted_at) %></p>
-    <%= link post.title, to: Routes.post_path(@conn, :show, post), class: "ds-heading-3" %>
+    <%= link post.title, to: Routes.post_path(@conn, :show, post), class: "ds-heading-3 ds-pretty-link" %>
     <p class="ds-subtitle-1"><%= post.excerpt %></p>
     <%= render "_tags.html", conn: @conn, tags: post.tags %>
   </article>

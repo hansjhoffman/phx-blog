@@ -13,6 +13,7 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 ## TODO
 - Testing
+- Assoc tag w/ post
 - Liveview markdown editor
 - Admin panel nav is-active
 - App css
@@ -28,3 +29,5 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 - Featured post boolean property
 - Turbolinks (https://github.com/kagux/turbolinks_plug)
 - Configure OTP login
+- Sourcemap setup in webpack
+- RSS feed

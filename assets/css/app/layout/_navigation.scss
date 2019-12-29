@@ -1,0 +1,23 @@
+.ds-primary-nav {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  background-image: url("/images/geometric.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 9rem 0;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: currentColor;
+    display: block;
+  }
+}

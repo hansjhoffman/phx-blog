@@ -3,6 +3,15 @@ defmodule BlogWeb.Admin.PostControllerTest do
 
   alias Blog.{Accounts, CMS}
 
+  # tag_name = "elixir"
+  # create(:post)
+  # tag = create(:tag, name: tag_name)
+  # create(:post_tag, tag: tag, post: post)
+
+  # conn = get conn, post_path(conn, :index)
+
+  # assert html_response(conn, 200) =~ tag_name
+
   @create_attrs %{
     content: "some content",
     excerpt: "some excerpt",
