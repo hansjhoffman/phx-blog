@@ -1,0 +1,12 @@
+.ds-pretty-link {
+  text-decoration: none;
+  display: inline-block;
+  border-bottom: 2px solid var(--link-color);
+  color: var(--link-color);
+  transition: color 0.2s, border-bottom-color 0.2s;
+
+  &:hover {
+    color: var(--link-hover-color);
+    border-bottom-color: var(--link-hover-color);
+  }
+}

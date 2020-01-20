@@ -35,9 +35,10 @@ let toggle = document.getElementById("theme-toggle");
 toggle.addEventListener("click", function(e) {
   e.preventDefault();
 
+  document.body.classList.remove(document.body.classList[0]);
+
   if (document.body.classList.contains("ds-theme--dark")) {
     document.body.classList.remove("ds-theme--dark");
-    localStorage.removeItem("theme", "dark");
   } else {
     document.body.classList.add("ds-theme--dark");
     localStorage.setItem("theme", "dark");

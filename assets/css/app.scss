@@ -13,12 +13,15 @@
 
 @import "app/layout/navigation";
 @import "app/layout/grid";
+@import "app/layout/footer";
 @import "app/layout/header";
 @import "app/layout/forms";
 
 @import "app/components/buttons";
+@import "app/components/links";
 @import "app/components/social";
 @import "app/components/tags";
+@import "app/components/timeline";
 
 @import "app/pages/about";
 @import "app/pages/blog";
@@ -104,21 +107,40 @@
   }
 }
 
-.theme-toggle {
-  border-radius: 50%;
-  background-color: var(--bg);
-  border: 2px solid yellow;
-  width: 1.5rem;
-  height: 1.5rem;
+.ds-theme-dropdown {
+  position: relative;
+  display: inline-block;
+  margin-right: 2rem;
+
+  &__content {
+    display: none;
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
+    justify-content: space-evenly;
+    background-color: var(--bg2);
+    border-top: 2px solid var(--link-hover-color);
+    padding: .5rem 0;
+    width: 300px;
+    z-index: 1;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+
+    span:hover {
+      cursor: pointer;
+    }
+  }
+
+  &:hover > &__content {
+    display: flex;
+  }
 }
 
-.ds-pretty-link {
-  text-decoration: underline;
-  color: salmon;
-  text-decoration-color: salmon;
-  transition: color 0.2s;
-
-  &:hover {
-    color: sandybrown;
-  }
+.ds-btn__dropdown {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  background: var(--bg2);
+  border: 2px solid var(--link-hover-color);
+  cursor: pointer;
 }

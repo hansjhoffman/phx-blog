@@ -9,21 +9,21 @@
 html {
   font-size: 62.5%;
 
-  @include respond-to("sm") {
-    font-size: 56.25%;
-  }
+  // @include respond-to("sm") {
+  //   font-size: 56.25%;
+  // }
 
-  @include respond-to("md") {
-    font-size: 50%;
-  }
+  // @include respond-to("md") {
+  //   font-size: 50%;
+  // }
 
-  @include respond-to("lg") {
-    font-size: 45%;
-  }
+  // @include respond-to("lg") {
+  //   font-size: 45%;
+  // }
 
-  @include respond-to("xl") {
-    font-size: 75%;
-  }
+  // @include respond-to("xl") {
+  //   font-size: 75%;
+  // }
 }
 
 body {
@@ -32,7 +32,15 @@ body {
   margin: 0 9.6rem;
 }
 
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+}
+
 ::selection {
-  background-color: #efbb35;
+  background-color: var(--link-color);
   color: #fff;
 }

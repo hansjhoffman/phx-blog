@@ -1,13 +1,15 @@
 body {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: 6.5rem 1fr 6.5rem;
   grid-column-gap: 1.6rem;
-}
-
-header {
-  grid-column: 1 / 4;
+  grid-template-areas:
+    "brand . . . nav nav nav nav"
+    "main main main main main main main main"
+    "footer footer footer footer footer footer footer footer";
+  min-height: 100vh;
 }
 
 main {
-  grid-column: 4 / -1;
+  grid-area: main;
 }

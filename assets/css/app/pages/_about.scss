@@ -1,0 +1,11 @@
+.ds-section-about {
+  display: grid;
+  grid-template-columns: 40% 1fr;
+  padding-top: 11rem;
+}
+
+.ds-section-work {
+  display: flex;
+  align-items: center;
+  padding-top: 11rem;
+}
