@@ -26,17 +26,9 @@
   
   <body>
     <header class="ds-header">
-      <img src="<%= Routes.static_path(@conn, "/images/logo.svg") %>" class="ds-header__brand" />
+      
       <nav class="ds-nav" role="navigation">
-        <div class="ds-theme-dropdown">
-          <button class="ds-btn__dropdown" aria-label="theme switcher"></button>
-          <div class="ds-theme-dropdown__content">
-            <span onclick="alert('light')">Light</span>
-            <span onclick="setTheme('dark')">Dark</span>
-            <span onclick="setTheme('solarized-light')">Solarized Light</span>
-            <span onclick="setTheme('solarized-dark')">Solarized Dark</span>
-          </div>
-        </div>
+      <img src="<%= Routes.static_path(@conn, "/images/logo.svg") %>" class="ds-header__brand" />
         <ul class="ds-nav__links">
           <%= if @current_user do %>
             <li>
@@ -63,6 +55,15 @@
           <span />
         </div>
       </nav>
+      <div class="ds-theme-dropdown">
+        <button class="ds-btn__dropdown" aria-label="theme switcher"></button>
+        <div class="ds-theme-dropdown__content">
+          <span onclick="alert('light')">Light</span>
+          <span onclick="setTheme('dark')">Dark</span>
+          <span onclick="setTheme('solarized-light')">Solarized Light</span>
+          <span onclick="setTheme('solarized-dark')">Solarized Dark</span>
+        </div>
+      </div>
     </header>
     <main role="main">
       <%= render @view_module, @view_template, assigns %>

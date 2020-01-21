@@ -33,17 +33,17 @@
 /**********************
  *       Layout
  **********************/
-.ds-space {
+.ds-spacer {
   &--sm {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.2rem;
   }
 
   &--md {
-    margin-bottom: 1rem;
+    margin-bottom: 2.4rem;
   }
 
   &--lg {
-    margin-bottom: 2rem;
+    margin-bottom: 4.8rem;
   }
 }
 
@@ -52,18 +52,22 @@
  **********************/
 .ds-markdown {
   blockquote {
-    margin: 0;
+    margin: 2rem 0;
     border-left: 4px solid var(--tertiary);
     font-style: italic;
     padding: 1.33em;
     text-align: left;
+
+    & > p {
+      margin: 0;
+    }
   }
 
   pre {
     background-color: var(--bg2);
     border-color: #44444c;
     padding: 0.5em 1em;
-    margin: 1.5em 0;
+    margin: 1.6em;
     text-align: left;
   }
 
@@ -79,21 +83,17 @@
   }
 
   p {
+    @extend .ds-body;
     margin-bottom: 2rem;
   }
 
   a {
-    color: var(--primary);
-    border-bottom: 2px dotted var(--primary);
-    transition: border-bottom 0.2s ease-in-out;
-
-    &:hover {
-      border-bottom: 2px solid var(--primary);
-    }
+    @extend .ds-pretty-link;
   }
 
   ul,
   ol {
+    @extend .ds-body;
     margin: 1.6rem;
     padding-left: 2rem;
   }

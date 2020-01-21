@@ -1,11 +1,23 @@
 .ds-section-about {
   display: grid;
   grid-template-columns: 40% 1fr;
-  padding-top: 11rem;
+  padding: 11rem 9.6rem 0;
 }
 
 .ds-section-work {
   display: flex;
   align-items: center;
-  padding-top: 11rem;
+  padding: 11rem 9.6rem 0;
+}
+
+.ds-profile-bg {
+  background: rgba(0, 0, 0, 0) url("/images/profile-bg.png") no-repeat scroll 0 100%;
+  margin-right: -30px;
+  padding-bottom: 40px;
+  padding-left: 40px;
+}
+
+.ds-img--profile {
+  border: 10px solid var(--bg2);
+  max-width: 80%;
 }

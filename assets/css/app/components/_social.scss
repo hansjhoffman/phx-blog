@@ -1,17 +1,16 @@
 .ds-social {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
-  width: 100%;
+  width: 50%;
 
   &__icon {
-    height: 20px;
-    width: 20px;
-    fill: currentColor;
+    height: $icon-size--sm;
+    width: $icon-size--sm;
+    color: var(--text-color);
 
     &:hover,
     &:focus {
-      color: var(--secondary);
+      color: var(--primary);
     }
   }
 }

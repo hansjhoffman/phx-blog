@@ -1,11 +1,8 @@
-<section class="ds-markdown">
-  <h1 class="ds-heading-2"><%= @post.title %></h1>
+<section class="ds-section-post ds-markdown">
+  <h1 class="ds-heading-1"><%= @post.title %></h1>
   <p class="ds-caption"><%= format_date(@post.updated_at) %> &middot; <%= read_time(@post.content) %></p>
-
-  <p class="ds-body-1"><%= as_html(@post.content) %></p>
-
+  <p class="ds-body"><%= as_html(@post.content) %></p>
   <%= render "_tags.html", conn: @conn, tags: @post.tags %>
-
   <hr />
 
 <%= if @current_user do %>

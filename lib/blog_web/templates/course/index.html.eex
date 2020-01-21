@@ -1,5 +1,9 @@
-<section>
-  <div class="ds-heading-1">Courses</div>
-  <a class="ds-heading-3" href="https://www.youtube.com/playlist?list=PLWjQo-n6bn1NrDLnY14ksPLHLcIyuRI29">99 Problems in Elm (Coming Soon)</a>
-  <a class="ds-heading-3" href="https://www.youtube.com/playlist?list=PLWjQo-n6bn1N3X9owRrQwN9byGpOOxuT-">99 Problems in Elixir (Coming Soon)</a>
+<section class="ds-section-courses">
+  <h1 class="ds-heading-1">Courses</h1>
+  <div>
+    <a class="ds-heading-3 ds-pretty-link" href="https://www.youtube.com/playlist?list=PLWjQo-n6bn1NrDLnY14ksPLHLcIyuRI29">99 Problems in Elm (Coming Soon)</a>
+  </div>
+  <div>
+    <a class="ds-heading-3 ds-pretty-link" href="https://www.youtube.com/playlist?list=PLWjQo-n6bn1N3X9owRrQwN9byGpOOxuT-">99 Problems in Elixir (Coming Soon)</a>
+  </div>
 </section>

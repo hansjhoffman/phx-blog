@@ -1,10 +1,11 @@
 <section class="ds-section-posts">
-  <div class="ds-heading-1">Blog</div>
+  <h1 class="ds-heading-1">Blog</h1>
 <%= for post <- @posts do %>
   <article class="ds-spacer--lg">
     <p class="ds-caption"><%= format_date(post.inserted_at) %></p>
     <%= link post.title, to: Routes.post_path(@conn, :show, post), class: "ds-heading-3 ds-pretty-link" %>
-    <p class="ds-heading-3"><%= post.excerpt %></p>
+    <div class="ds-spacer--sm"></div>
+    <p class="ds-body"><%= post.excerpt %></p>
     <%= render "_tags.html", conn: @conn, tags: post.tags %>
   </article>
 <% end %>

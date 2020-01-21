@@ -1,8 +1,11 @@
 <section class="ds-section-about">
-  <div>Image</div>
+  <div class="ds-profile-bg">
+    <img class="ds-img--profile" src="<%= Routes.static_path(@conn, "/images/profile.jpg") %>" />
+  </div>
   <div>
     <h1 class="ds-heading-1">About Me</h1> 
-    <p class="ds-body">2011 USAFA grad, Veteran and Software Engineer @ <a href="https://www.joinknack.com/team" class="ds-pretty-link">Knack</a> currently living in Tampa, FL. I love coding in Elixir + Phoenix, Elm and React. Functional programming is the bee&apos;s knees.</p>
+    <p class="ds-body">2011 USAFA grad, Veteran, 81kg Olympic Weightlifter and Software Engineer @ <a href="https://www.joinknack.com/team" class="ds-pretty-link">Knack</a> currently living in Tampa, FL. I love coding in Elixir + Phoenix, Elm and React. Functional programming is the bee&apos;s knees.</p>
+    <div class="ds-spacer--lg"></div>
     <div class="ds-social">
       <%= link to: "https://github.com/hansjhoffman/", target: "_blank", class: "ds-primary-nav__link ds-heading-5" do %>
         <svg viewBox="0 0 22 20" xmlns="http://www.w3.org/2000/svg" class="ds-social__icon">
